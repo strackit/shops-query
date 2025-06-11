@@ -13,42 +13,42 @@ To build a reusable JavaScript package containing optimized GraphQL operations t
 
  
  Folder Structure
+
 graphql-package/
-│
-├── client.js
-├── index.js
-├── test.js
-│
-└── queries/
-|   ├── address.js
-|   ├── banner.js
-|   ├── blog.js
-|   ├── cart.js
-|   ├── categories.js
-|   ├── cms.js
-|   ├── customerSupport.js
-|   ├── ipaddress.js
-|   ├── masterCategories.js
-|   ├── nestedCategory.js
-|   ├── offerProducts.js
-|   ├── orders.js
-|   ├── payment.js
-|   ├── productByCategory.js
-|   ├── productByFilters.js
-|   ├── productByPrice.js
-|   ├── productReviews.js
-|   ├── products.js
-|   ├── promotion.js
-|   ├── ratings.js
-|   ├── searchProducts.js
-|   |── secondaryCategories.js
-|   ├── shop.js
-|   |── topProducts.js
-|   └── wishList.js
-|
-|
-|──package-lock.json
-└── package.json
+ client.js
+ index.js
+ test.js
+
+ graphql-package/queries/ 
+ address.js
+ banner.js
+ blog.js
+ cart.js
+ categories.js
+ cms.js
+ customerSupport.js
+ ipaddress.js
+ masterCategories.js
+ nestedCategory.js
+ offerProducts.js
+ orders.js
+ payment.js
+ productByCategory.js
+ productByFilters.js
+ productByPrice.js
+ productReviews.js
+ products.js
+ promotion.js
+ ratings.js
+ searchProducts.js
+ secondaryCategories.js
+ shop.js
+ topProducts.js
+ wishList.js
+
+graphql-package/
+package-lock.json
+package.json
 
 
 Each file corresponds to a GraphQL schema group and contains related queries/mutations.
