@@ -1,0 +1,26 @@
+const { gql } = require ('graphql-tag');
+
+ const GET_CMS_CONTENT = gql`
+  query GetCMSContent {
+    CMS {
+      id
+      title
+      content
+      page
+      updatedAt
+    }
+  }
+`;
+
+ const GET_SITE_CONFIG = gql`
+  query GetSiteConfig {
+    siteConfig {
+      currency
+      language
+      theme
+    }
+  }
+`;
+
+
+module.exports = { GET_CMS_CONTENT, GET_SITE_CONFIG };
