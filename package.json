@@ -1,7 +1,7 @@
 {
   "name": "graphql-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is a modular **GraphQL-based backend** for managing an e-commerce platform. It supports querying and mutating data for categories, products, cart, wishlist, reviews, offers, and real-time order updates.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,13 +11,23 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@apollo/client": "^3.13.8",
     "apollo-server": "^3.13.0",
     "cross-fetch": "^4.1.0",
     "dotenv": "^16.5.0",
     "graphql": "^16.11.0",
     "graphql-request": "^7.2.0",
     "graphql-tag": "^2.12.6",
-    "graphql-ws": "^6.0.5",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "ws": "^8.18.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strackit/shops-query.git"
+  },
+  "bugs": {
+    "url": "https://github.com/strackit/shops-query/issues"
+  },
+  "homepage": "https://github.com/strackit/shops-query#readme"
 }
