@@ -1,0 +1,33 @@
+import client from '../../../utils/client.js';
+import { gql } from '../../../utils/client.js';
+
+const REMOVE_FROM_WISHLIST = gql`
+  mutation RemoveFromWishlist($userId: Int, $productId: Int, $shopId: Int, $Delete: Boolean) {
+    Wishlist(userId: $userId, productId: $productId, shopId: $shopId, Delete: $Delete) {
+      id
+      userId
+      productId
+      shopId
+    }
+  }
+`;
+
+export const removeFromWishlist = async ({ userId, productId, shopId }) => {
+  try {
+    const { data } = await client.mutate({
+      mutation: REMOVE_FROM_WISHLIST,
+      variables: {
+        userId,
+        productId,
+        shopId,
+        Delete: true, // ensure 'Delete' matches the mutation variable name
+      },
+    });
+
+    console.log(' Removed from wishlist:', data.Wishlist);
+    return data.Wishlist;
+  } catch (error) {
+    console.error(' Error removing from wishlist:', error.message || error);
+    throw error;
+  }
+};
