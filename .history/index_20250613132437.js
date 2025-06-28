@@ -1,0 +1,43 @@
+import categories from './src/modules/categories/index.js';
+import masterCategories from './src/modules/masterCategories/index.js';
+import nestedCategory from './src/modules/nestedCategory/index.js';
+import offerProducts from './src/modules/offerProducts/index.js';
+import productReviews from './src/modules/productReviews/index.js';
+import products from './Src/modules/products/index.js';
+import wishlist from './Src/modules/wishlist/index.js';
+import cart from './Src/modules/cart/index.js';
+import topProducts from './Src/modules/topProducts/index.js';
+import productsByCategory from './Src/modules/productByCategory/index.js';
+import productByFilters from './Src/modules/productByFilters/index.js';
+import productByPrice from './Src/modules/productByPrice/index.js';
+import searchproducts from './Src/modules/searchproducts/index.js';
+
+import { listenToOrderUpdatesController } from './Src/modules/orderUpdates/index.js';
+
+// Combine everything into one object
+const graphqlModules = {
+  ...categories,
+  ...masterCategories,
+  ...nestedCategory,
+  ...offerProducts,
+  ...productReviews,
+  ...products,
+  ...wishlist,
+  ...cart,
+  ...topProducts,
+  ...productsByCategory,
+  ...productByFilters,
+  ...productByPrice,
+  ...searchProducts,
+  listenToOrderUpdatesController,
+};
+
+// Export the final combined modules
+
+
+// Optional: Run test/demo mode when directly executed
+if (import.meta.url === `file://${process.argv[1]}`) {
+  console.log('🚀 Loaded GraphQL Modules:', Object.keys(graphqlModules));
+}
+
+export default graphqlModules;

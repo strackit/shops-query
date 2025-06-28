@@ -1,0 +1,11 @@
+import { addToWishlist } from '../../mutations/add.js';
+
+export const addToWishlistController = async (productId) => {
+  try {
+    const item = await addToWishlist(productId);
+    console.log('💘 Added to Wishlist:', item);
+    return item;
+  } catch (error) {
+    console.error('❌ Controller failed to add to wishlist:', error);
+  }
+};
