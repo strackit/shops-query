@@ -1,0 +1,32 @@
+{
+  "name": "graphqLpackage",
+  "version": "1.0.0",
+  "description": "Combined GraphQL modules for shops and products",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo 'Run individual modules from shops/ or products/'",
+    "dev": "echo 'Use module-specific runners if needed'",
+    "test": "echo 'Tests can be added per module if needed'"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.8",
+    "apollo-server": "^3.13.0",
+    "cross-fetch": "^4.1.0",
+    "dotenv": "^16.6.1",
+    "graphql": "^16.11.0",
+    "graphql-request": "^7.2.0",
+    "graphql-tag": "^2.12.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "ws": "^8.18.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strackit/shops-query.git"
+  },
+  "bugs": {
+    "url": "https://github.com/strackit/shops-query/issues"
+  },
+  "homepage": "https://github.com/strackit/shops-query#readme"
+}

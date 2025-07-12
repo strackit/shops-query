@@ -1,0 +1,42 @@
+{
+  "name": "graphqlpackage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cross-fetch": "^4.1.0",
+    "dotenv": "^17.2.0",
+    "graphql": "^16.11.0",
+    "graphql-tag": "^2.12.6",
+    "graphql-ws": "^6.0.5",
+    "hoist-non-react-statics": "^3.3.2",
+    "js-tokens": "^4.0.0",
+    "loose-envify": "^1.4.0",
+    "node-fetch": "^2.7.0",
+    "object-assign": "^4.1.1",
+    "optimism": "^0.18.1",
+    "prop-types": "^15.8.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-is": "^16.13.1",
+    "rehackt": "^0.1.0",
+    "scheduler": "^0.26.0",
+    "symbol-observable": "^4.0.0",
+    "tr46": "^0.0.3",
+    "ts-invariant": "^0.10.3",
+    "tslib": "^2.8.1",
+    "webidl-conversions": "^3.0.1",
+    "whatwg-url": "^5.0.0",
+    "ws": "^8.18.2",
+    "zen-observable": "^0.8.15",
+    "zen-observable-ts": "^1.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
