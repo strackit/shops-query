@@ -1,10 +1,12 @@
-// src/utils/client.js
-import pkg from '@apollo/client';
-import fetch from 'cross-fetch';
+// products/src/utils/client.js
+
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+
+const { ApolloClient, InMemoryCache, HttpLink, gql } = require('@apollo/client');
+const fetch = require('cross-fetch');
 import dotenv from 'dotenv';
 dotenv.config();
-
-const { ApolloClient, InMemoryCache, HttpLink, gql } = pkg;
 
 const endpoint = process.env.GRAPHQL_API_URL;
 
