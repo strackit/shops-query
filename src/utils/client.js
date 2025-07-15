@@ -4,7 +4,7 @@ const fetch = require('cross-fetch');
 import dotenv from 'dotenv';
 dotenv.config();
 
-const endpoint = process.env.GRAPHQL_API_URL;
+const endpoint = "https://test.api.shop.strackit.com/graphql";
 
 if (!endpoint) {
   throw new Error('❌ GRAPHQL_API_URL is not defined in .env');
