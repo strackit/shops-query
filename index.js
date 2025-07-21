@@ -29,6 +29,7 @@ import shippingCost from "./src/modules/shippingCost/index.js";
 import userOrderDetails from "./src/modules/userOrderDetails/index.js";
 import orderHistory from "./src/modules/orderHistory/index.js";
 
+
 export default {
   address,
   banner,
