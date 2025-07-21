@@ -1,1 +1,0 @@
-categories/queries/get,js (remember according to my schema)
