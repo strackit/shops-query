@@ -1,14 +1,11 @@
-// src/modules/productsByCategory/controller/get/index.js
-
 import { fetchProductsByCategory } from '../../queries/get.js';
 
-export const getProductsByCategoryController = async (productCategoryId, shopId) => {
+export const getProductsByCategoryController = async (masterCategory, shopId, secondaryCategory = null) => {
   try {
-    const items = await fetchProductsByCategory(productCategoryId, shopId);
-    console.log(`📦 Products for ProductCategoryId ${productCategoryId} in Shop ${shopId}:`, items);
+    const items = await fetchProductsByCategory(masterCategory, shopId, secondaryCategory);
     return items;
   } catch (error) {
-    console.error('❌ Controller failed to fetch products by category:', error.message || error);
+    console.error('Controller failed to fetch products by category:', error.message);
     throw error;
   }
 };

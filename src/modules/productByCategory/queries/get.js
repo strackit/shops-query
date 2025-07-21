@@ -1,71 +1,80 @@
-import client from '../../../utils/client.js';
-import { gql } from '../../../utils/client.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
 const PRODUCTS_BY_CATEGORY = gql`
   query ProductsByCategory($filter: CategoryWiseFilter) {
     productsByCategory(filter: $filter) {
-      wishList { like }
-      views
-      viewPrice
+      id
+      number
+      name
+      localName
+      hsnCode
       tax
-      specification
-      shopId
+      prize
+      dnp
+      noStock
+      minStock
+      description
       seoKeyword
-      quantity { quantity }
+      howToUse
+      otherInformation
+      shopId
+      featureImage
+      mastercategory
+      category
+      categoryId
       publish
-      productImage {
-        productId
-        image
-        id
-      }
+      viewPrice
+      discount
+      offerends
+      views
+      isOnline
       productId
       productCategoryId
-      prize
-      otherInformation
-      offerends
-      number
-      noStock
-      name
-      minStock
-      mastercategory
-      localName
-      lastUpdate
-      isOnline
-      isAddedToCart { inCart }
-      id
-      hsnCode
-      howToUse
-      featureImage
-      dnp
-      discount
-      description
-      categoryId
-      category
       barcode
+      lastUpdate
       addedon
+      wishList {
+        like
+      }
+      isAddedToCart {
+        inCart
+      }
+      quantity {
+        quantity
+      }
+      specification
+      productImage {
+        id
+        image
+        productId
+      }
       Specifications {
-        value
         specification
+        value
       }
     }
   }
 `;
 
-export const fetchProductsByCategory = async (productCategoryId, shopId) => {
+export const fetchProductsByCategory = async (masterCategory, shopId, secondaryCategory = null) => {
   try {
+    const filter = {
+      master: masterCategory,
+      shopId: Number(shopId)
+    };
+
+    if (secondaryCategory) {
+      filter.secondary = secondaryCategory;
+    }
+
     const { data } = await client.query({
       query: PRODUCTS_BY_CATEGORY,
-      variables: {
-        filter: {
-          productCategoryId: Number(productCategoryId),
-          shopId: Number(shopId),
-        },
-      },
+      variables: { filter }
     });
 
-    return data.productsByCategory;
+    return data?.productsByCategory || [];
   } catch (error) {
-    console.error('❌ Error fetching products by category:', error.message || error);
+    console.error('Error fetching products by category:', error.message);
     throw error;
   }
 };

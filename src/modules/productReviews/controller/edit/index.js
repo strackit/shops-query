@@ -1,5 +1,3 @@
-// src/modules/reviews/controller/edit/index.js
-
 import { editReview } from '../../mutations/edit.js';
 
 /**
@@ -11,10 +9,10 @@ import { editReview } from '../../mutations/edit.js';
 export const editReviewController = async (id, input) => {
   try {
     const review = await editReview(id, input);
-    console.log('✅ Review Edited:', review);
+    console.log('Review Edited:', review);
     return review;
   } catch (error) {
-    console.error('❌ Controller failed to edit review:', error.message || error);
+    console.error('Controller failed to edit review:', error.message || error);
     throw error;
   }
 };

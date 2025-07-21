@@ -1,5 +1,4 @@
-import client from '../../../utils/client.js';
-import { gql } from '../../../utils/client.js';
+import client , {gql} from '../../../utils/apolloClient.js';
 
 const GET_WISHLIST = gql`
   query Wishlist($filter: WishlistFilterInput) {
@@ -23,9 +22,9 @@ const GET_WISHLIST = gql`
 }
 `;
 
-export const fetchWishlist = async (userId) => {
+export const fetchWishlist = async (userId , shopid) => {
   try {
-    const filter = { userId: Number(userId) }; // make sure it's userId, not user_id
+    const filter = { userId: Number(userId) , shopId: Number(shopid)};
     const response = await client.query({
       query: GET_WISHLIST,
       variables: { filter },

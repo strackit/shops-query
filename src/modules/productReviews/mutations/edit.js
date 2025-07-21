@@ -1,5 +1,4 @@
-import client from '../../../utils/client.js';
-import { gql } from '../../../utils/client.js';
+import client , {gql} from '../../../utils/apolloClient.js';
 
 const EDIT_REVIEW = gql`
  mutation Mutation($orderId: Int, $userId: Int, $productId: Int, $rating: Int, $review: String) {
@@ -29,7 +28,7 @@ export const editReview = async (input) => {
 
     return response?.data?.editReview ?? null;
   } catch (error) {
-    console.error('❌ Error editing review:', error.message || error);
+    console.error('Error editing review:', error.message || error);
     throw error;
   }
 };

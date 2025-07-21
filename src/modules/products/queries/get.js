@@ -1,4 +1,4 @@
-import client, { gql } from '../../../utils/client.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
 export const GET_PRODUCTS = gql`
   query GetProducts($filter: productfilter) {
@@ -48,21 +48,23 @@ export const GET_PRODUCTS = gql`
     category
     barcode
     addedon
-    Specifications {
-      value
-      specification
-    }
   }
 }
 `;
 
-export const fetchProducts = async (shopId) => {
+export const fetchProducts = async ({ shopId = null, productId = null }) => {
   const variables = {
-    filter: {
-      shopId: Number(shopId),
-    },
+    filter: {}
   };
-  console.log('📦 Fetching products with variables:', variables);
+
+  if (productId) {
+    variables.filter.productId = Number(productId);
+  } else if (shopId) {
+    variables.filter.shopId = Number(shopId);
+  } else {
+    console.error('Either shopId or productId must be provided');
+    return [];
+  }
 
   try {
     const response = await client.query({
@@ -70,9 +72,9 @@ export const fetchProducts = async (shopId) => {
       variables,
     });
 
-    return response?.data?.products ?? [];
+    return productId ? response?.data?.products?.[0] : response?.data?.products ?? [];
   } catch (error) {
-    console.error('❌ Failed to fetch products:', error.message || error);
-    return [];
+    console.error('Failed to fetch products:', error.message || error);
+    return productId ? null : [];
   }
 };

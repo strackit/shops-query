@@ -1,31 +1,54 @@
-// src/modules/cart/controller/add_/index.js
-
-import client, { gql } from '../../../utils/client.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
 export const ADD_TO_CART = gql`
-  mutation Mutation($userId: Int, $productId: Int, $quantity: Int, $shopId: Int, $delete: Boolean, $update: Boolean) {
-  Cart(userId: $userId, productId: $productId, quantity: $quantity, shopId: $shopId, Delete: $delete, Update: $update) {
-    userId
-    shopId
-    quantity
-    productId
-    id
+  mutation AddToCart(
+    $userId: Int!
+    $productId: Int!
+    $shopId: Int!
+    $quantity: Int!
+  ) {
+    Cart(
+      userId: $userId
+      productId: $productId
+      shopId: $shopId
+      quantity: $quantity
+    ) {
+      id
+      productId
+      userId
+      shopId
+      quantity
+      prize
+      Discount
+      name
+      featureImage
+    }
   }
-}
 `;
 
-export const addToCart = async ({ productId, shopId, userId, update, quantity }) => {
+export const addToCart = async ({ productId, shopId, userId, quantity = 1 }) => {
   try {
-    const variables = { productId, shopId, userId, update, quantity };
-
-    const response = await client.mutate({
+    const { data, errors } = await client.mutate({
       mutation: ADD_TO_CART,
-      variables,
+      variables: {
+        userId: Number(userId),
+        productId: Number(productId),
+        shopId: Number(shopId),
+        quantity: Number(quantity)
+      }
     });
 
-    return response?.data?.Cart ?? null;
+    if (errors) {
+      throw new Error(errors.map(e => e.message).join(', '));
+    }
+
+    if (!data?.Cart) {
+      throw new Error('No data returned from add to cart mutation');
+    }
+
+    return data.Cart;
   } catch (error) {
-    console.error('Cart Add Error:', error.message || error);
+    console.error('Error adding to cart:', error.message);
     throw error;
   }
 };

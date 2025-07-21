@@ -1,4 +1,3 @@
-// src/modules/products/controller/getTop/index.js
 import { fetchTopProducts } from '../../queries/get.js';
 
 /**
@@ -8,10 +7,9 @@ import { fetchTopProducts } from '../../queries/get.js';
 export const getTopProductsController = async (shopId) => {
   try {
     const products = await fetchTopProducts(shopId);
-    console.log('🔥 Top Products:', products);
     return products;
   } catch (error) {
-    console.error('❌ Controller failed to fetch top products:', error.message || error);
+    console.error('Controller failed to fetch top products:', error.message || error);
     throw error;
   }
 };

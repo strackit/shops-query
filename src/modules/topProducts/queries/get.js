@@ -1,5 +1,4 @@
-import client from '../../../utils/client.js';
-import { gql } from '../../../utils/client.js';
+import client , {gql} from "../../../utils/apolloClient.js";
 
 const GET_TOP_PRODUCTS = gql`
   query Query($filter: top) {
@@ -60,7 +59,7 @@ export const fetchTopProducts = async (shopId) => {
     });
     return data.topProducts;
   } catch (error) {
-    console.error('❌ Error fetching top products:', error.message || error);
+    console.error('Error fetching top products:', error.message || error);
     throw error;
   }
 };

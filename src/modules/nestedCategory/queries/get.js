@@ -1,5 +1,4 @@
-// src/modules/nestedCategory/queries/get.js
-import client, { gql } from '../../../utils/client.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
 export const GET_NESTED_CATEGORY = gql`
   query GetNestedCategory($filter:  categery) {

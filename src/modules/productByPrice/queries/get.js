@@ -1,7 +1,4 @@
-// src/modules/products/queries/getByPrice.js
-
-import { gql } from '../../../utils/client.js';
-import client from '../../../utils/client.js';
+import client , { gql } from '../../../utils/apolloClient.js';
 
 const GET_PRODUCTS_BY_PRICE = gql`
   query ProductsByPrice($minPrice: Float!, $maxPrice: Float!) {
@@ -26,7 +23,7 @@ export const fetchProductsByPrice = async ({ minPrice, maxPrice }) => {
 
     return response?.data?.productByPrice ?? [];
   } catch (error) {
-    console.error('❌ Error fetching products by price:', error.message || error);
+    console.error('Error fetching products by price:', error.message || error);
     throw error;
   }
 };

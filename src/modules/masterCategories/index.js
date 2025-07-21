@@ -1,6 +1,5 @@
-// src/modules/masterCategories/index.js
-import { getMasterCategoriesController } from './controller/get/index.js';
+import { fetchMasterCategories } from './controller/get/index.js';
 
 export {
-  getMasterCategoriesController,
+  fetchMasterCategories,
 };

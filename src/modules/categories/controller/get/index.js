@@ -1,4 +1,3 @@
-// src/modules/categories/controller/get/index.js
 import { getCategories } from '../../queries/get.js';
 
 /**
@@ -7,6 +6,5 @@ import { getCategories } from '../../queries/get.js';
  * @returns {Promise<Array>} List of categories
  */
 export const getCategoriesController = async (shopId) => {
-  console.log('➡️ Controller Received shopId:', shopId);
-  return await getCategories(shopId);  // ✅ Forward to query function
+  return await getCategories(shopId);
 };

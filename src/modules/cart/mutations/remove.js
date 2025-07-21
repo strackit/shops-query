@@ -1,21 +1,21 @@
-// src/modules/cart/mutations/remove.js
-
-import client, { gql } from '../../../utils/client.js' ;
+import client, { gql } from '../../../utils/apolloClient.js';
 
 export const UPDATE_OR_DELETE_CART = gql`
   mutation UpdateOrDeleteCart(
-    $productId: Int
-    $shopId: Int
-    $userId: Int
-    $update: Boolean
+    $userId: Int!
+    $productId: Int!
+    $shopId: Int!
     $quantity: Int
+    $update: Boolean!
+    $delete: Boolean!
   ) {
     Cart(
+      userId: $userId
       productId: $productId
       shopId: $shopId
-      userId: $userId
-      Update: $update
       quantity: $quantity
+      Update: $update
+      Delete: $delete
     ) {
       id
       productId
@@ -25,3 +25,53 @@ export const UPDATE_OR_DELETE_CART = gql`
     }
   }
 `;
+
+export const updateCartItem = async ({ userId, productId, shopId, quantity }) => {
+  try {
+    const { data, errors } = await client.mutate({
+      mutation: UPDATE_OR_DELETE_CART,
+      variables: {
+        userId: Number(userId),
+        productId: Number(productId),
+        shopId: Number(shopId),
+        quantity: Number(quantity),
+        update: true,
+        delete: false
+      }
+    });
+
+    if (errors) {
+      throw new Error(errors.map(e => e.message).join(', '));
+    }
+
+    return data?.Cart || null;
+  } catch (error) {
+    console.error('Error updating cart item:', error.message);
+    throw error;
+  }
+};
+
+export const removeFromCart = async ({ userId, productId, shopId }) => {
+  try {
+    const { data, errors } = await client.mutate({
+      mutation: UPDATE_OR_DELETE_CART,
+      variables: {
+        userId: Number(userId),
+        productId: Number(productId),
+        shopId: Number(shopId),
+        quantity: 0,
+        update: false,
+        delete: true
+      }
+    });
+
+    if (errors) {
+      throw new Error(errors.map(e => e.message).join(', '));
+    }
+
+    return data?.Cart || null;
+  } catch (error) {
+    console.error('Error removing from cart:', error.message);
+    throw error;
+  }
+};

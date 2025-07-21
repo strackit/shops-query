@@ -1,6 +1,4 @@
-// src/modules/categories/queries/get.js
-import { gql } from '../../../utils/client.js';
-import client from '../../../utils/client.js';
+import client , {gql} from '../../../utils/apolloClient.js';
 
 const GET_CATEGORIES = gql`
  query getCategories($filter: shop) {
@@ -11,7 +9,6 @@ const GET_CATEGORIES = gql`
 `;
 
 export const getCategories = async (shopId) => {
-  console.log('➡️ Query Received shopId:', shopId);
   const variables = {
     filter: {
       shopId : Number(shopId), 
@@ -26,7 +23,7 @@ export const getCategories = async (shopId) => {
   });
     return res.data.categories;
   } catch (err) {
-    console.error('❌ Error in getCategories:', err.message || err);
+    console.error('Error in getCategories:', err.message || err);
     throw err;
   }
 };

@@ -1,4 +1,3 @@
-// src/modules/wishlist/controller/get/index.js
 import { fetchWishlist } from '../../queries/get.js';
 
 /**
@@ -9,13 +8,13 @@ import { fetchWishlist } from '../../queries/get.js';
 // src/modules/wishlist/controller/get/index.js
 
 
-export const getWishlistController = async (userId) => {
+export const getWishlistController = async (userId , shopid) => {
   try {
-    const wishlist = await fetchWishlist(userId);
-    console.log('🧡 Wishlist Items:', wishlist);
+    const wishlist = await fetchWishlist(userId , shopid);
+    console.log('Wishlist Items:', wishlist);
     return wishlist;
   } catch (error) {
-    console.error('❌ Controller failed to fetch wishlist:', error.message || error);
+    console.error('Controller failed to fetch wishlist:', error.message || error);
     throw error;
   }
 };

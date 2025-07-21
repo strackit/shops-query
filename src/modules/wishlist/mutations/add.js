@@ -1,28 +1,30 @@
-// src/modules/wishlist/mutations/add.js
-import client from '../../../utils/client.js';
-import { gql } from '../../../utils/client.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
-const ADD_TO_WISHLIST = gql`
-  mutation AddToWishlist($productId: Int, $shopId: Int, $userId: Int, $update: Boolean, $quantity: Int) {
-    addToWishlist(productId: $productId, shopId: $shopId, userId: $userId, Update: $update, quantity: $quantity) {
-      productId
+export const ADD_TO_WISHLIST = gql`
+  mutation Wishlist($userId: Int, $productId: Int, $shopId: Int, $delete: Boolean) {
+    Wishlist(userId: $userId, productId: $productId, shopId: $shopId, Delete: $delete) {
       userId
+      productId
       shopId
-      quantity
-      update
+      id
     }
   }
 `;
 
-export const addToWishlist = async (productId, shopId, userId, quantity = 1, update = false) => {
+export const addToWishlist = async (productId, shopId, userId) => {
   try {
     const { data } = await client.mutate({
       mutation: ADD_TO_WISHLIST,
-      variables: { productId, shopId, userId, quantity, update },
+      variables: {
+        userId: Number(userId),
+        productId: Number(productId),
+        shopId: Number(shopId),
+        delete: false
+      }
     });
-    return data?.Cart;
+    return data?.Wishlist || null;
   } catch (error) {
-    console.error('❌ Error adding to wishlist:', error.message || error);
+    console.error('Error adding to wishlist:', error.message);
     throw error;
   }
 };

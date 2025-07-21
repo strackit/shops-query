@@ -1,5 +1,5 @@
 import { GET_OFFER_PRODUCTS } from '../../queries/get.js';
-import client from '../../../../utils/client.js'
+import client from '../../../../utils/apolloClient.js';
 
 export const getOfferProductsController = async (shopId) => {
   try {
@@ -15,11 +15,11 @@ export const getOfferProductsController = async (shopId) => {
       variables,
     });
 
-    console.log('🟢 Raw Response:', JSON.stringify(response, null, 2));
+    console.log('Raw Response:', JSON.stringify(response, null, 2));
 
     return response?.data?.offerProducts ?? [];
   } catch (error) {
-    console.error('❌ Error in controller:', error.message || error);
+    console.error('Error in controller:', error.message || error);
     throw error;
   }
 };

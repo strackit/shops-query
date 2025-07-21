@@ -7,6 +7,6 @@ export const getProductsByFiltersController = async (filters) => {
     return items;
   } catch (error) {
     console.error('Controller failed to fetch filtered products:', error);
-    throw error;  // rethrow so upstream can handle it
+    throw error; 
   }
 };

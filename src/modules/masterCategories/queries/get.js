@@ -1,5 +1,4 @@
-// src/modules/masterCategories/queries/get.js
-import client, { gql } from '../../../utils/client.js';
+import client , {gql} from '../../../utils/apolloClient.js';
 
 export const GET_MASTER_CATEGORIES = gql`
   query GetMasterCategories($filter: MasterCategoryInput) {
@@ -23,10 +22,9 @@ export const getMasterCategories = async (shopId) => {
       query: GET_MASTER_CATEGORIES,
       variables :{ filter: { shopId: Number(shopId) } }
     });
-
     return response?.data?.masterCategories ?? [];
   } catch (err) {
-    console.error('❌ Error fetching categories:', err.message || err);
+    console.error('Error fetching categories:', err.message || err);
     throw err;
   }
 };

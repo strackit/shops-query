@@ -1,5 +1,4 @@
-import { gql } from '../../../utils/client.js';
-import client from '../../../utils/client.js';
+import client , {gql} from '../../../utils/apolloClient.js';
 
 const GET_REVIEWS_QUERY = gql`
   query ProductReviews($filters: reviewFilter) {
@@ -24,14 +23,14 @@ export const fetchReviews = async (productId) => {
       query: GET_REVIEWS_QUERY,
       variables: {
         filters: {
-          productId: Number(productId), // pass required fields like productId, userId, etc.
+          productId: Number(productId),
         },
       },
     });
 
     return response?.data?.productReviews ?? [];
   } catch (error) {
-    console.error('❌ Error fetching product reviews:', error.message || error);
+    console.error('Error fetching product reviews:', error.message || error);
     throw error;
   }
 };

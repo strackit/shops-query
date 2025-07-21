@@ -1,6 +1,4 @@
-//src/modules/offerProducts/queries/get.js
-import { gql } from '../../../utils/client.js';
-import client from '../../../utils/client.js';
+import client , {gql} from '../../../utils/apolloClient.js';
 
 export const GET_OFFER_PRODUCTS = gql`
   query GetofferProducts($filter: offer) {
@@ -42,14 +40,14 @@ export const GET_OFFER_PRODUCTS = gql`
 `;
 
 export const fetchOfferProducts = async (shopId) => {
-  if (!shopId) throw new Error('⚠️ shopId is required');
+  if (!shopId) throw new Error('shopId is required');
 
   try {
     const response = await client.query({
       query: GET_OFFER_PRODUCTS,
       variables: {
         filter: {
-          shopId: Number(shopId), // ensure numeric
+          shopId: Number(shopId),
         },
       },
     });
@@ -57,7 +55,7 @@ export const fetchOfferProducts = async (shopId) => {
     return response?.data?.offerProducts ?? [];
   } catch (error) {
     console.error(
-      '❌ Controller failed to fetch offer products:',
+      'Controller failed to fetch offer products:',
       error.message || error
     );
     throw error;

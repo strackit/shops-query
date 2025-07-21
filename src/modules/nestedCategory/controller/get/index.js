@@ -1,8 +1,7 @@
 import { GET_NESTED_CATEGORY } from '../../queries/get.js';
-import client from '../../../../utils/client.js';
+import client from '../../../../utils/apolloClient.js';
 
 export const getNestedCategoryController = async (shopId) => {
-  console.log('➡️ Controller Received shopId:', shopId);
 
   try {
     const response = await client.query({
@@ -16,7 +15,7 @@ export const getNestedCategoryController = async (shopId) => {
 
     return response?.data?.nestedCategory ?? [];
   } catch (error) {
-    console.error('❌ Controller failed to fetch nested category:', error.message || error);
+    console.error('Controller failed to fetch nested category:', error.message || error);
     throw error;
   }
 };

@@ -1,5 +1,4 @@
-import { gql } from '../../../utils/client.js';
-import client from '../../../utils/client.js';
+import client , { gql } from '../../../utils/apolloClient.js';
 
 const GET_PRODUCTS_BY_FILTERS = gql`
   query ProductsByFilters($filters: ProductFilterInput) {
@@ -22,7 +21,7 @@ export const fetchProductsByFilters = async (filters) => {
 
     return response?.data?.productByFilters ?? [];
   } catch (error) {
-    console.error('❌ Error fetching products by filters:', error.message || error);
+    console.error('Error fetching products by filters:', error.message || error);
     throw error;
   }
 };
