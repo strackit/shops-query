@@ -6,16 +6,16 @@ export const UPDATE_OR_DELETE_CART = gql`
     $productId: Int!
     $shopId: Int!
     $quantity: Int
-    $Update: Boolean!
-    $Delete: Boolean!
+    $update: Boolean
+    $delete: Boolean
   ) {
     Cart(
       userId: $userId
       productId: $productId
       shopId: $shopId
       quantity: $quantity
-      Update: $Update
-      Delete: $Delete
+      Update: $update
+      Delete: $delete
     ) {
       id
       productId
@@ -35,12 +35,13 @@ export const updateCartItem = async ({ userId, productId, shopId, quantity }) =>
         productId: Number(productId),
         shopId: Number(shopId),
         quantity: Number(quantity),
-        Update: true,
-       }
+        update: true,
+        delete: null
+      }
     });
 
     if (errors) {
-      throw new Error(errors.map(e => e.message).join(', '));
+      throw new Error(errors.map(e => e.message).join(', ');
     }
 
     return data?.Cart || null;
@@ -58,8 +59,9 @@ export const removeFromCart = async ({ userId, productId, shopId }) => {
         userId: Number(userId),
         productId: Number(productId),
         shopId: Number(shopId),
-        quantity: 0,
-        Delete: true
+        quantity: null,
+        update: null,
+        delete: true
       }
     });
 
