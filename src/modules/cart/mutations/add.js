@@ -18,10 +18,6 @@ export const ADD_TO_CART = gql`
       userId
       shopId
       quantity
-      prize
-      Discount
-      name
-      featureImage
     }
   }
 `;
