@@ -3,7 +3,7 @@ import fetch from 'cross-fetch';
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://test.api.shop.strackit.com/graphql',
+    uri: 'https://api.shop.strackit.com/graphql',
     fetch
   }),
   cache: new InMemoryCache()

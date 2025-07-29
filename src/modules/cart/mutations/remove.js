@@ -1,27 +1,31 @@
 import client, { gql } from '../../../utils/apolloClient.js';
 
 export const UPDATE_OR_DELETE_CART = gql`
-  mutation UpdateOrDeleteCart(
+  mutation Cart(
     $userId: Int!
     $productId: Int!
     $shopId: Int!
     $quantity: Int
-    $update: Boolean!
-    $delete: Boolean!
+    $Update: Boolean!
+    $Delete: Boolean!
   ) {
     Cart(
       userId: $userId
       productId: $productId
       shopId: $shopId
       quantity: $quantity
-      Update: $update
-      Delete: $delete
+      Update: $Update
+      Delete: $Delete
     ) {
       id
       productId
       userId
       shopId
       quantity
+      prize
+      Discount
+      name
+      featureImage
     }
   }
 `;
@@ -35,8 +39,8 @@ export const updateCartItem = async ({ userId, productId, shopId, quantity }) =>
         productId: Number(productId),
         shopId: Number(shopId),
         quantity: Number(quantity),
-        update: true,
-        delete: false
+        Update: true,
+        Delete: false
       }
     });
 
@@ -60,8 +64,8 @@ export const removeFromCart = async ({ userId, productId, shopId }) => {
         productId: Number(productId),
         shopId: Number(shopId),
         quantity: 0,
-        update: false,
-        delete: true
+        Update: false,
+        Delete: true
       }
     });
 

@@ -8,7 +8,9 @@ export const addToCartController = async ({ productId, shopId, userId, quantity 
     let result;
     try {
       result = await addToCart({ productId, shopId, userId, quantity });
-      if (result) return result;
+      if (result) {
+        return result;
+      }
     } catch (addError) {
       console.warn('Initial add failed, trying update:', addError.message);
     }
@@ -17,7 +19,7 @@ export const addToCartController = async ({ productId, shopId, userId, quantity 
     result = await updateCartItem({ userId, productId, shopId, quantity });
     
     // Verify the item was actually added/updated
-    const cartItems = await fetchCart(userId);
+    const cartItems = await fetchCart(shopId, userId);
     const itemInCart = cartItems.find(item => 
       item.productId === productId && item.shopId === shopId
     );
@@ -34,9 +36,9 @@ export const addToCartController = async ({ productId, shopId, userId, quantity 
   }
 };
 
-export const fetchCartController = async (shopId , userId) => {
+export const fetchCartController = async (shopId, userId) => {
   try {
-    const cartItems = await fetchCart(shopId ,userId);
+    const cartItems = await fetchCart(shopId, userId);
     
     if (!Array.isArray(cartItems)) {
       console.warn('Unexpected cart data format:', cartItems);
@@ -55,7 +57,7 @@ export const removeFromCartController = async ({ userId, productId, shopId }) =>
     const result = await removeFromCart({ userId, productId, shopId });
     
     // Verify the item was actually removed
-    const cartItems = await fetchCart(userId);
+    const cartItems = await fetchCart(shopId, userId);
     const itemStillInCart = cartItems.some(item => 
       item.productId === productId && item.shopId === shopId
     );
@@ -77,7 +79,7 @@ export const updateCartQuantityController = async ({ userId, productId, shopId, 
     const result = await updateCartItem({ userId, productId, shopId, quantity });
     
     // Verify the quantity was actually updated
-    const cartItems = await fetchCart(userId);
+    const cartItems = await fetchCart(shopId, userId);
     const item = cartItems.find(i => 
       i.productId === productId && i.shopId === shopId
     );
