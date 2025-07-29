@@ -40,8 +40,7 @@ export const updateCartItem = async ({ userId, productId, shopId, quantity }) =>
         shopId: Number(shopId),
         quantity: Number(quantity),
         Update: true,
-        Delete: false
-      }
+       }
     });
 
     if (errors) {
@@ -64,7 +63,6 @@ export const removeFromCart = async ({ userId, productId, shopId }) => {
         productId: Number(productId),
         shopId: Number(shopId),
         quantity: 0,
-        Update: false,
         Delete: true
       }
     });
