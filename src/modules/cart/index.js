@@ -1,13 +1,13 @@
 import { 
-  addToCartController, 
-  fetchCartController, 
-  removeFromCartController,
-  updateCartQuantityController
+  addToCartController as addToCart, 
+  fetchCartController as fetchCart, 
+  removeFromCartController as removeFromCart,
+  updateCartQuantityController as updateCartQuantity
 } from './controller/index.js';
 
 export {
-  addToCartController as addToCart,
-  fetchCartController as fetchCart,
-  removeFromCartController as removeFromCart,
-  updateCartQuantityController as updateCartQuantity
+  addToCart,
+  fetchCart,
+  removeFromCart,
+  updateCartQuantity
 };
