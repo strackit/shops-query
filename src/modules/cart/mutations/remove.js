@@ -41,7 +41,7 @@ export const updateCartItem = async ({ userId, productId, shopId, quantity }) =>
     });
 
     if (errors) {
-      throw new Error(errors.map(e => e.message).join(', ');
+      throw new Error(errors.map(e => e.message).join(', '));
     }
 
     return data?.Cart || null;
