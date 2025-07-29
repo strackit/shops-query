@@ -22,10 +22,6 @@ export const UPDATE_OR_DELETE_CART = gql`
       userId
       shopId
       quantity
-      prize
-      Discount
-      name
-      featureImage
     }
   }
 `;
