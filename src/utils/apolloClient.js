@@ -20,6 +20,5 @@ const client = new ApolloClient({
   }
 });
 
-
 export default client;
 export { gql };
