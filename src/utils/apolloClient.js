@@ -6,7 +6,19 @@ const client = new ApolloClient({
     uri: 'https://api.shop.strackit.com/graphql',
     fetch
   }),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'no-cache',
+    },
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+    },
+    mutate: {
+      fetchPolicy: 'no-cache',
+    }
+  }
 });
+
 export default client;
 export { gql };
