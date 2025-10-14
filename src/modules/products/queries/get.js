@@ -3,66 +3,92 @@ import client, { gql } from '../../../utils/apolloClient.js';
 export const GET_PRODUCTS = gql`
   query GetProducts($filter: productfilter) {
   products(filter: $filter) {
-    productImage {
-      productId
-      image
-      id
-    }
+    id
+    number
+    name
+    
     wishList {
       like
     }
-    views
-    viewPrice
-    tax
-    specification
-    shopId
-    seoKeyword
-    quantity {
-      quantity
-    }
-    publish
-    productId
-    productCategoryId
-    prize
-    otherInformation
-    offerends
-    number
-    noStock
-    name
-    minStock
-    mastercategory
-    localName
-    lastUpdate
-    isOnline
     isAddedToCart {
       inCart
     }
-    id
+    productImage {
+      id
+      image
+      productId
+    }
+    Specifications {
+      specification
+      value
+    }
+    Varients {
+      varientId
+      productId
+    }
+    quantity {
+      quantity
+    }
+    spec {
+      SpecificationMastername
+      value {
+        varientId
+        products {
+          productId
+          value
+          qty
+        }
+      }
+    }
+    specification
+    addedon
+    barcode
+    category
+    categoryId
+    description
     hsnCode
     howToUse
-    featureImage
     dnp
     discount
-    description
-    categoryId
-    category
-    barcode
-    addedon
+    featureImage
+    isOnline
+    lastUpdate
+    localName
+    mastercategory
+    noStock
+    minStock
+    offerends
+    otherInformation
+    prize
+    productCategoryId
+    productId
+    publish
+    tax
+    viewPrice
+    views
+    shopId
+    seoKeyword
   }
 }
 `;
 
-export const fetchProducts = async ({ shopId = null, productId = null }) => {
+export const fetchProducts = async ({ shopId = null, productId = null, categoryId = null }) => {
   const variables = {
     filter: {}
   };
 
+  if (shopId) {
+    variables.filter.shopId = Number(shopId);
+  }
+
+  if (categoryId) {
+    variables.filter.categoryId = Number(categoryId);
+  }
+
   if (productId) {
     variables.filter.productId = Number(productId);
-  } else if (shopId) {
-    variables.filter.shopId = Number(shopId);
-  } else {
-    console.error('Either shopId or productId must be provided');
+  } if (!variables.filter.shopId || (!variables.filter.categoryId && !variables.filter.productId)) {
+    console.error('Please provide shopId and either categoryId or productId');
     return [];
   }
 
