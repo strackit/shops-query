@@ -1,7 +1,7 @@
 import { fetchProducts } from '../../queries/get.js';
 
-export const getProductsController = async (shopId) => {
-  return await fetchProducts({ shopId });
+export const getProductsController = async (shopId, categoryId) => {
+  return await fetchProducts({ shopId, categoryId });
 };
 
 export const getProductByIdController = async (productId) => {
