@@ -1,6 +1,12 @@
 import client , {gql} from '../../../utils/apolloClient.js';
 
-const GET_WISHLIST = gql`
+const getWishlistQuery = (shopId) => {
+  const stockFields = shopId === 481 ? '' : `
+    noStock
+    minStock
+  `;
+
+  return gql`
   query Wishlist($filter: WishlistFilterInput) {
   wishlist(filter: $filter) {
     userId
@@ -9,8 +15,7 @@ const GET_WISHLIST = gql`
     shopId
     productId
     prize
-    noStock
-    minStock
+        ${stockFields}
     mastercategory
     id
     hsnCode
@@ -21,12 +26,15 @@ const GET_WISHLIST = gql`
   }
 }
 `;
+};
 
-export const fetchWishlist = async (userId , shopid) => {
+export const fetchWishlist = async (userId, shopid) => {
   try {
-    const filter = { userId: Number(userId) , shopId: Number(shopid)};
+    const filter = { userId: Number(userId), shopId: Number(shopid) };
+    const query = getWishlistQuery(shopid);
+    
     const response = await client.query({
-      query: GET_WISHLIST,
+      query: query,
       variables: { filter },
     });
     return response?.data?.wishlist || [];

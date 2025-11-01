@@ -1,4 +1,4 @@
-import { gql, client } from '../../../utils/apolloClient.js';
+import client , { gql } from '../../../utils/apolloClient.js';
 
 const EDIT_REVIEW = gql`
   mutation EditReview($id: Int!, $input: RatingInput!) {

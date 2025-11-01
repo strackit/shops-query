@@ -1,4 +1,4 @@
-import { gql, client } from '../../../utils/apolloClient.js';
+import client , { gql } from '../../../utils/apolloClient.js';
 
 const CHECK_PAYMENT_STATUS_MUTATION = gql`
   mutation CheckPaymentStatus($orderId: Int!) {
