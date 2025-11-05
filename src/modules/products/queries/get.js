@@ -71,11 +71,8 @@ export const GET_PRODUCTS = gql`
   }
 }
 `;
-
-export const fetchProducts = async ({ shopId = null, productId = null, categoryId = null }) => {
-  const variables = {
-    filter: {}
-  };
+export const fetchProducts = async ({ shopId = null, productId = null, categoryId = null, byProductId = false }) => {
+  const variables = { filter: {} };
 
   if (shopId) {
     variables.filter.shopId = Number(shopId);
@@ -86,9 +83,20 @@ export const fetchProducts = async ({ shopId = null, productId = null, categoryI
   }
 
   if (productId) {
-    variables.filter.productId = Number(productId);
-  } if (!variables.filter.shopId || (!variables.filter.categoryId && !variables.filter.productId)) {
-    console.error('Please provide shopId and either categoryId or productId');
+    if (byProductId) {
+      variables.filter.productId = Number(productId);
+    } else {
+      variables.filter.id = Number(productId);
+    }
+  } else if (shopId) {
+    variables.filter.shopId = Number(shopId);
+  } else {
+    console.error("Either shopId or productId must be provided");
+    return [];
+  }
+
+  if (!variables.filter.shopId && !variables.filter.id && !variables.filter.productId) {
+    console.error("Please provide valid shopId or productId");
     return [];
   }
 
@@ -100,7 +108,7 @@ export const fetchProducts = async ({ shopId = null, productId = null, categoryI
 
     return productId ? response?.data?.products?.[0] : response?.data?.products ?? [];
   } catch (error) {
-    console.error('Failed to fetch products:', error.message || error);
+    console.error("Failed to fetch products:", error.message || error);
     return productId ? null : [];
   }
 };

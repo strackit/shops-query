@@ -5,10 +5,15 @@ export const getProductsController = async (shopId, categoryId) => {
 };
 
 export const getProductByIdController = async (productId) => {
-  return await fetchProducts({ productId });
+  return await fetchProducts({ productId, byProductId: false });
+};
+
+export const getProductByproductIdController = async (productId) => {
+  return await fetchProducts({ productId, byProductId: true });
 };
 
 export default {
   getProductsController,
-  getProductByIdController
+  getProductByIdController,
+  getProductByproductIdController
 };
