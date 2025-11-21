@@ -11,7 +11,6 @@ import { fetchWishlist } from '../../queries/get.js';
 export const getWishlistController = async (userId , shopid) => {
   try {
     const wishlist = await fetchWishlist(userId , shopid);
-    console.log('Wishlist Items:', wishlist);
     return wishlist;
   } catch (error) {
     console.error('Controller failed to fetch wishlist:', error.message || error);
