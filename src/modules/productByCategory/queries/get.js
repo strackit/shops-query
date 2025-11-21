@@ -56,7 +56,7 @@ const PRODUCTS_BY_CATEGORY = gql`
   }
 `;
 
-export const fetchProductsByCategory = async (masterCategory, shopId, secondaryCategory = null) => {
+export const fetchProductsByCategory = async (masterCategory, shopId, secondaryCategory = null , offset = null , limit = null) => {
   try {
     const filter = {
       master: masterCategory,
@@ -65,6 +65,14 @@ export const fetchProductsByCategory = async (masterCategory, shopId, secondaryC
 
     if (secondaryCategory) {
       filter.secondary = secondaryCategory;
+    }
+
+    if (limit) {
+      filter.limit = limit;
+    }
+
+ if (offset) {
+      filter.offset = offset;
     }
 
     const { data } = await client.query({
