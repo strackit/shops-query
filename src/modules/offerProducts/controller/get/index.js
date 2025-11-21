@@ -15,7 +15,6 @@ export const getOfferProductsController = async (shopId) => {
       variables,
     });
 
-    console.log('Raw Response:', JSON.stringify(response, null, 2));
 
     return response?.data?.offerProducts ?? [];
   } catch (error) {

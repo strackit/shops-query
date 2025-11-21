@@ -1,4 +1,4 @@
-import { gql, client } from '../../../utils/apolloClient.js';
+import  client ,{ gql} from '../../../utils/apolloClient.js';
 
 const GET_COUPONS_QUERY = gql`
   query GetCoupons($filter: couponFilter) {

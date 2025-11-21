@@ -1,4 +1,4 @@
-import { gql, client } from '../../../utils/apolloClient.js';
+import  client , { gql } from '../../../utils/apolloClient.js';
 
 const UPDATE_COUPON_MUTATION = gql`
   mutation UpdateCoupon($id: Int!, $input: CouponInput!) {

@@ -1,4 +1,4 @@
-import { gql, client } from '../../../utils/apolloClient.js';
+import  client , { gql } from '../../../utils/apolloClient.js';
 
 export const GET_PRODUCT_REVIEWS = gql`
   query ProductReviews($filters: reviewFilter) {
