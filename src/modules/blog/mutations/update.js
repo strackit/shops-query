@@ -1,5 +1,5 @@
 import { gql } from 'graphql-tag';
-import { client } from '../../../utils/apolloClient.js';
+import  client  from '../../../utils/apolloClient.js';
 
 const UPDATE_BLOG_MUTATION = gql`
   mutation UpdateBlog($id: ID!, $input: blogInput!) {

@@ -1,3 +1,3 @@
-import { fetchOrderHistory } from './Controller/index';
+import { fetchOrderHistory } from './Controller/index.js';
 
 export { fetchOrderHistory };

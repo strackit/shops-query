@@ -1,3 +1,3 @@
-import { fetchSpecificationsByShop } from './Controller/index';
+import { fetchSpecificationsByShop } from './Controller/index.js';
 
 export { fetchSpecificationsByShop };
