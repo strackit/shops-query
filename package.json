@@ -1,5 +1,11 @@
 {
+  "name": "shops-query",
+  "version": "1.0.0",
   "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
   "dependencies": {
     "@apollo/client": "^3.7.17",
     "cross-fetch": "^4.1.0",

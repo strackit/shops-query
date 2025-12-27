@@ -10,12 +10,15 @@ const client = new ApolloClient({
   defaultOptions: {
     query: {
       fetchPolicy: 'no-cache',
+      errorPolicy: 'all', // Return both data and errors
     },
     watchQuery: {
       fetchPolicy: 'no-cache',
+      errorPolicy: 'all', // Return both data and errors
     },
     mutate: {
       fetchPolicy: 'no-cache',
+      errorPolicy: 'all', // Return both data and errors
     }
   }
 });
