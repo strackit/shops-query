@@ -3,7 +3,10 @@ import banner from './src/modules/banner/index.js';
 import blog from './src/modules/blog/index.js';
 import ipaddress from './src/modules/ipaddress/index.js';
 import * as orders from './src/modules/orders/index.js';
+import * as orderbycart from './src/modules/orderbycart/index.js';
+import * as filtermaster from './src/modules/filtermaster/index.js';
 import payment from './src/modules/payment/index.js';
+import * as paymentlink from './src/modules/paymentlink/index.js';
 import promotion from './src/modules/promotion/index.js';
 import ratings from './src/modules/ratings/index.js';
 import shop from './src/modules/shop/index.js';
@@ -17,6 +20,7 @@ import * as productbyfilters from "./src/modules/productbyfilters/index.js";
 import * as productbyprice from "./src/modules/productbyprice/index.js";
 import * as productreviews from "./src/modules/productreviews/index.js";
 import * as products from "./src/modules/products/index.js";
+import * as productBySpecification from "./src/modules/productBySpecification/index.js";
 import * as searchproducts from "./src/modules/searchproducts/index.js";
 import * as topproducts from "./src/modules/topproducts/index.js";
 import * as wishlist from "./src/modules/wishlist/index.js";
@@ -39,7 +43,10 @@ export default {
   blog,
   ipaddress,
   orders,
+  orderbycart,
+  filtermaster,
   payment,
+  paymentlink,
   promotion,
   ratings,
   shop,
@@ -53,6 +60,7 @@ export default {
   productbyprice,
   productreviews,
   products,
+  productBySpecification,
   searchproducts,
   topproducts,
   wishlist,
