@@ -1,3 +1,3 @@
-import { fetchState } from './Controller/index';
+import { fetchState } from './Controller/index.js';
 
 export { fetchState };
