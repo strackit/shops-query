@@ -1,5 +1,6 @@
 import fetch from "cross-fetch";
 import FormData from "form-data";
+import Cookies from "js-cookie";
 
 const BASE_URL = "https://you.strackit.com/ALUMNI/loginandsignup/";
 
