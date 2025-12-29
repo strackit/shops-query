@@ -1,3 +1,3 @@
-import { fetchUserOrderDetails } from './Controller';
+import { fetchUserOrderDetails } from './Controller/index.js';
 
 export  default { fetchUserOrderDetails };

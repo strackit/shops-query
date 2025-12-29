@@ -14,11 +14,7 @@ export const fetchFilterMasterByShop = async (filter) => {
         const { data } = await client.query({
             query: GET_FILTER_MASTER_BY_SHOP,
             variables: {
-                filter: {
-                    shopId: Number(filter.shopId),
-                    categoryName: filter.categoryName || null,
-                    masterCategoryName: filter.masterCategoryName || null
-                }
+                filter
             }
         });
 
