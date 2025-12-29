@@ -35,6 +35,7 @@ import * as orderHistory from "./src/modules/orderHistory/index.js";
 import login from './src/modules/login/index.js';
 import register from './src/modules/register/index.js';
 import forgotpassword from './src/modules/forgotpassword/index.js';
+import * as SecondaryCategories from './src/modules/SecondaryCategories/index.js';
 
 
 export default {
@@ -67,6 +68,7 @@ export default {
   customerMessage,
   couponCode,
   specifications,
+  SecondaryCategories,
   state,
   searchFilter,
   shippingCost,
