@@ -1,0 +1,1 @@
+export { loginUserWithOTP, verifyOtp, getUserData, getUserId } from "./controller/index.js" ;
