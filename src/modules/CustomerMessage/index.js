@@ -1,3 +1,3 @@
-import { fetchCustomerMessage } from './Controller';
+import { fetchCustomerMessage } from './Controller/index.js';
 
 export default { fetchCustomerMessage };
