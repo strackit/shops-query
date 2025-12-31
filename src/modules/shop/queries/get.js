@@ -1,4 +1,4 @@
-import  client , { gql } from '../../../utils/apolloClient.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
 const GET_SHOPS = gql`
   query GetShops($filter: ShopInput) {
@@ -19,6 +19,7 @@ const GET_SHOPS = gql`
     featureImage
     description
     views
+    templateName
     productCount
     isOnline
     customDomain
