@@ -1,5 +1,6 @@
-import { getProductsBySpecification } from './controller/index.js';
+import {
+  getProductsBySpecification,
+  getProductsByFilters,
+} from "./controller/index.js";
 
-export {
-    getProductsBySpecification
-};
+export { getProductsBySpecification, getProductsByFilters };
