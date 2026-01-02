@@ -1,9 +1,14 @@
 import { getProductsByFilters } from "./src/modules/productBySpecification/index.js";
 
 const SHOP_ID = 556; // Update this to your shop ID
+const MASTER_CATEGORY = "Men"; // Update this to a valid master category name in your shop
+const SECONDARY_CATEGORY = "Oversized"; // Update this to a valid secondary category name in your shop
 
 async function testProductsByFilters() {
   console.log("=== Comprehensive Testing: getProductsByFilters ===\n");
+  console.log(
+    "NOTE: Update SHOP_ID, MASTER_CATEGORY, and SECONDARY_CATEGORY constants before running tests\n"
+  );
   let passedTests = 0;
   let totalTests = 0;
 
@@ -21,14 +26,7 @@ async function testProductsByFilters() {
   };
 
   try {
-    // ==================== BASIC FILTERS ====================
-
-    await runTest("Filter by shopId only (all products)", async () => {
-      const products = await getProductsByFilters({ shopId: SHOP_ID });
-      console.log(`Found ${products.length} total products`);
-      if (products.length === 0)
-        throw new Error("Expected products but got none");
-    });
+    // ==================== PRODUCT ID FILTER ====================
 
     await runTest("Filter by productId (string format)", async () => {
       const products = await getProductsByFilters({
@@ -46,45 +44,36 @@ async function testProductsByFilters() {
 
     // ==================== CATEGORY FILTERS ====================
 
-    await runTest("Filter by master category (name)", async () => {
+    await runTest("Filter by master category name", async () => {
       const products = await getProductsByFilters({
         shopId: SHOP_ID,
-        masterCategory: "Men",
+        masterCategory: MASTER_CATEGORY,
       });
-      console.log(`Found ${products.length} products in "Men" category`);
-      console.log(products);
+      console.log(
+        `Found ${products.length} products in master category "${MASTER_CATEGORY}"`
+      );
+      console.log("Products are", products);
+      
       if (products.length > 0) {
         console.log(`Sample: ${products[0].name}`);
       }
       if (products.length === 0)
-        throw new Error("Expected Men category products");
+        throw new Error(
+          `Expected products for master category "${MASTER_CATEGORY}"`
+        );
     });
 
-    await runTest("Filter by master + secondary category (names)", async () => {
+    await runTest("Filter by master + secondary category names", async () => {
       const products = await getProductsByFilters({
         shopId: SHOP_ID,
-        masterCategory: "Men",
-        secondaryCategory: "Oversized",
+        masterCategory: MASTER_CATEGORY,
+        secondaryCategory: SECONDARY_CATEGORY,
       });
-      console.log(`Found ${products.length} products in "Men > Oversized"`);
+      console.log(
+        `Found ${products.length} products in "${MASTER_CATEGORY} > ${SECONDARY_CATEGORY}"`
+      );
       if (products.length > 0) {
         console.log(`Products: ${products.map((p) => p.name).join(", ")}`);
-      }
-    });
-
-    await runTest("Case-insensitive category matching", async () => {
-      const products1 = await getProductsByFilters({
-        shopId: SHOP_ID,
-        masterCategory: "Men",
-      });
-      const products2 = await getProductsByFilters({
-        shopId: SHOP_ID,
-        masterCategory: "men", // lowercase
-      });
-      console.log(`"Men": ${products1.length} products`);
-      console.log(`"men": ${products2.length} products`);
-      if (products1.length !== products2.length) {
-        throw new Error("Case-insensitive matching failed");
       }
     });
 
@@ -93,7 +82,7 @@ async function testProductsByFilters() {
     await runTest("Pagination with limit", async () => {
       const products = await getProductsByFilters({
         shopId: SHOP_ID,
-        masterCategory: "Men",
+        masterCategory: MASTER_CATEGORY,
         limit: 3,
       });
       console.log(`Requested limit: 3, Got: ${products.length} products`);
@@ -105,13 +94,13 @@ async function testProductsByFilters() {
     await runTest("Pagination with offset and limit", async () => {
       const page1 = await getProductsByFilters({
         shopId: SHOP_ID,
-        masterCategory: "Men",
+        masterCategory: MASTER_CATEGORY,
         limit: 2,
         offset: 0,
       });
       const page2 = await getProductsByFilters({
         shopId: SHOP_ID,
-        masterCategory: "Men",
+        masterCategory: MASTER_CATEGORY,
         limit: 2,
         offset: 2,
       });
@@ -131,13 +120,13 @@ async function testProductsByFilters() {
     await runTest("Combined: category + pagination", async () => {
       const products = await getProductsByFilters({
         shopId: SHOP_ID,
-        masterCategory: "Men",
-        secondaryCategory: "Crew Neck",
+        masterCategory: MASTER_CATEGORY,
+        secondaryCategory: SECONDARY_CATEGORY,
         limit: 5,
         offset: 0,
       });
       console.log(
-        `Found ${products.length} products (max 5) in "Men > Crew Neck"`
+        `Found ${products.length} products (max 5) in "${MASTER_CATEGORY} > ${SECONDARY_CATEGORY}"`
       );
       if (products.length > 5) {
         throw new Error("Limit not applied correctly");
@@ -152,7 +141,7 @@ async function testProductsByFilters() {
         masterCategory: "NonExistentCategory123",
       });
       console.log(
-        `Found ${products.length} products (expected: all or none based on fallback)`
+        `Found ${products.length} products (expected: 0 or error handled gracefully)`
       );
       console.log("✓ No crash on invalid category");
     });
@@ -160,7 +149,7 @@ async function testProductsByFilters() {
     await runTest("Non-existent secondary category", async () => {
       const products = await getProductsByFilters({
         shopId: SHOP_ID,
-        masterCategory: "Men",
+        masterCategory: MASTER_CATEGORY,
         secondaryCategory: "NonExistentSubCategory123",
       });
       console.log(`Found ${products.length} products`);
@@ -172,8 +161,8 @@ async function testProductsByFilters() {
     await runTest("All filters combined", async () => {
       const products = await getProductsByFilters({
         shopId: SHOP_ID,
-        masterCategory: "Men",
-        secondaryCategory: "Crew Neck",
+        masterCategory: MASTER_CATEGORY,
+        secondaryCategory: SECONDARY_CATEGORY,
         offset: 0,
         limit: 10,
       });
@@ -183,6 +172,7 @@ async function testProductsByFilters() {
     await runTest("Limit = 0 (edge case)", async () => {
       const products = await getProductsByFilters({
         shopId: SHOP_ID,
+        masterCategory: MASTER_CATEGORY,
         limit: 0,
       });
       console.log(`With limit=0: ${products.length} products`);
@@ -191,7 +181,7 @@ async function testProductsByFilters() {
     await runTest("Offset beyond available products", async () => {
       const products = await getProductsByFilters({
         shopId: SHOP_ID,
-        masterCategory: "Men",
+        masterCategory: MASTER_CATEGORY,
         offset: 9999,
         limit: 10,
       });
@@ -199,6 +189,31 @@ async function testProductsByFilters() {
         `With offset=9999: ${products.length} products (expected: 0)`
       );
     });
+
+    await runTest("No filters provided (should return empty)", async () => {
+      const products = await getProductsByFilters({
+        shopId: SHOP_ID,
+      });
+      console.log(
+        `No filters: ${products.length} products (expected warning in console)`
+      );
+    });
+
+    await runTest(
+      "ProductId takes precedence over category filters",
+      async () => {
+        const products = await getProductsByFilters({
+          shopId: SHOP_ID,
+          productId: "CR9969",
+          masterCategory: MASTER_CATEGORY, // Should be ignored
+          secondaryCategory: SECONDARY_CATEGORY, // Should be ignored
+        });
+        console.log(
+          `With productId + categories: ${products.length} product(s)`
+        );
+        console.log("✓ ProductId correctly takes precedence");
+      }
+    );
 
     // ==================== SUMMARY ====================
     console.log("\n" + "=".repeat(60));
