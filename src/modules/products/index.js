@@ -1,5 +1,13 @@
-import { getProductsController , getProductByIdController , getProductByproductIdController } from './controller/get/index.js';
+import {
+  getProductsController,
+  getProductByIdController,
+  getProductByproductIdController,
+  getProductsByFilters,
+} from "./controller/get/index.js";
 
 export {
-  getProductsController ,  getProductByIdController , getProductByproductIdController
+  getProductsController,
+  getProductByIdController,
+  getProductByproductIdController,
+  getProductsByFilters,
 };

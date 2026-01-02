@@ -1,4 +1,4 @@
-import { getProductsByFilters } from "./src/modules/productBySpecification/index.js";
+import { getProductsByFilters } from "./src/modules/products/index.js";
 
 const SHOP_ID = 556; // Update this to your shop ID
 const MASTER_CATEGORY = "Men"; // Update this to a valid master category name in your shop
@@ -53,7 +53,7 @@ async function testProductsByFilters() {
         `Found ${products.length} products in master category "${MASTER_CATEGORY}"`
       );
       console.log("Products are", products);
-      
+
       if (products.length > 0) {
         console.log(`Sample: ${products[0].name}`);
       }
