@@ -89,7 +89,7 @@ export const getOfferProducts = async (shopId, userId = null) => {
   }
 };
 
-export const fetchOfferProducts = async (shopId) => {
+export const getOfferProductsController = async (shopId) => {
   if (!shopId) throw new Error('shopId is required');
 
   try {
