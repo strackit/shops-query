@@ -159,6 +159,12 @@ export const fetchProductsByFilters = async ({
       );
     }
 
+    // If only shopId is provided, fetch all products for the shop
+    if (shopId) {
+      const products = await fetchProducts({ shopId });
+      return products;
+    }
+
     // If no filters provided, return empty array or throw error
     console.warn("No filters provided to fetchProductsByFilters");
     return [];
