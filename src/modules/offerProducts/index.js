@@ -2,5 +2,5 @@ import { getOfferProductsController, getOfferProducts } from './controller/get/i
 
 export {
   getOfferProductsController,
-  getOfferProducts,
+  getOfferProducts
 };

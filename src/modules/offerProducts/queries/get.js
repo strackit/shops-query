@@ -37,8 +37,8 @@ export const GET_OFFER_PRODUCTS = gql`
   }
 }`;
 
-export const PRODUCT_COLUMNS = gql`
-  query GetofferProducts($filter: offer) {
+export const GET_OFFER_PRODUCTS_BASIC_DETAILS = gql`
+  query GetofferBasicDetailsProducts($filter: offer) {
   offerProducts(filter: $filter) {
     id
     isAddedToCart {
