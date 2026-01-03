@@ -1,5 +1,6 @@
-import { getOfferProductsController } from './controller/get/index.js';
+import { getOfferProductsController, getOfferProducts } from './controller/get/index.js';
 
-export  {
+export {
   getOfferProductsController,
+  getOfferProducts,
 };
