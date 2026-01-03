@@ -1,4 +1,4 @@
-import { GET_OFFER_PRODUCTS, GET_OFFER_PRODUCTS } from '../../queries/get.js';
+import { GET_OFFER_PRODUCTS, GET_OFFER_PRODUCTS_BASIC_DETAILS } from '../../queries/get.js';
 import client from '../../../../utils/apolloClient.js';
 
 
@@ -14,7 +14,7 @@ export const getOfferProducts = async (shopId, userId = null) => {
       },
     };
     const response = await client.query({
-      query: GET_OFFER_PRODUCTS,
+      query: GET_OFFER_PRODUCTS_BASIC_DETAILS,
       variables,
     });
 
