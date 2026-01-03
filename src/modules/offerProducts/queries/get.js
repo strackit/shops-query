@@ -64,31 +64,6 @@ export const PRODUCT_COLUMNS = gql`
   }
 }`;
 
-export const getOfferProducts = async (shopId, userId = null) => {
-  if (!shopId) throw new Error('shopId is required');
-  if (userId) {
-    userId = Number(userId);
-  }
-  try {
-    const response = await client.query({
-      query: PRODUCT_COLUMNS,
-      variables: {
-        filter: {
-          shopId: Number(shopId),
-          userId
-        },
-      },
-    });
-    return response?.data?.offerProducts ?? [];
-  } catch (error) {
-    console.error(
-      'Controller failed to fetch offer products:',
-      error.message || error
-    );
-    throw error;
-  }
-};
-
 export const getOfferProductsController = async (shopId) => {
   if (!shopId) throw new Error('shopId is required');
 
