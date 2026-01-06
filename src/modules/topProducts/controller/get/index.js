@@ -1,4 +1,4 @@
-import { fetchTopProducts } from '../../queries/get.js';
+import { fetchTopProducts, fetchBasicDetailTopProducts } from '../../queries/get.js';
 
 /**
  * Controller to fetch top products
@@ -7,6 +7,16 @@ import { fetchTopProducts } from '../../queries/get.js';
 export const getTopProductsController = async (shopId) => {
   try {
     const products = await fetchTopProducts(shopId);
+    return products;
+  } catch (error) {
+    console.error('Controller failed to fetch top products:', error.message || error);
+    throw error;
+  }
+};
+
+export const getBasicDeatilsOfTopProduct = async (shopId, userId) => {
+  try {
+    const products = await fetchBasicDetailTopProducts(shopId, userId);
     return products;
   } catch (error) {
     console.error('Controller failed to fetch top products:', error.message || error);

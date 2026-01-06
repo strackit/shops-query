@@ -1,5 +1,5 @@
-import { getTopProductsController } from './controller/get/index.js';
+import { getTopProductsController, getBasicDeatilsOfTopProduct } from './controller/get/index.js';
 
-export  {
-  getTopProductsController,
+export {
+  getTopProductsController, getBasicDeatilsOfTopProduct
 };

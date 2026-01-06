@@ -1,4 +1,4 @@
-import client , {gql} from '../../../utils/apolloClient.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
 export const GET_OFFER_PRODUCTS = gql`
   query GetofferProducts($filter: offer) {
@@ -35,11 +35,36 @@ export const GET_OFFER_PRODUCTS = gql`
     lastUpdate
     isOnline
   }
-}
+}`;
 
-`;
+export const GET_OFFER_PRODUCTS_BASIC_DETAILS = gql`
+  query GetofferBasicDetailsProducts($filter: offer) {
+  offerProducts(filter: $filter) {
+    id
+    isAddedToCart {
+      inCart
+    }
+    name
+    prize
+    discount
+    publish
+    tax
+    wishList {
+      like
+    }
+    productImage {
+      id
+      image
+      productId
+    }
+    featureImage
+    description
+    isOnline
+    noStock
+  }
+}`;
 
-export const fetchOfferProducts = async (shopId) => {
+export const getOfferProductsController = async (shopId) => {
   if (!shopId) throw new Error('shopId is required');
 
   try {
