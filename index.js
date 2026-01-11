@@ -36,7 +36,7 @@ import login from './src/modules/login/index.js';
 import register from './src/modules/register/index.js';
 import forgotpassword from './src/modules/forgotpassword/index.js';
 import * as SecondaryCategories from './src/modules/SecondaryCategories/index.js';
-
+import * as fetchcms from './src/modules/cms/index.js'
 
 export default {
   address,
@@ -76,5 +76,6 @@ export default {
   orderHistory,
   login,
   register,
-  forgotpassword
+  forgotpassword,
+  fetchcms
 };
