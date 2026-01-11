@@ -1,4 +1,4 @@
-import client , { gql } from '../../../utils/apolloClient.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 export async function UPDATE_ORDER(id, input) {
   try {
     const { data } = await client.mutate({
