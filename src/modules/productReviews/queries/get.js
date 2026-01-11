@@ -17,13 +17,20 @@ const GET_REVIEWS_QUERY = gql`
 }
 `;
 
-export const fetchReviews = async (productId) => {
+export const fetchReviews = async (productId = null, shopId = null, rating = null, orderId = null) => {
   try {
+    productId = productId ? Number(productId) : null;
+    shopId = shopId ? Number(shopId) : null;
+    rating = rating ? Number(rating) : null;
+    orderId = orderId ? Number(orderId) : null;
     const response = await client.query({
       query: GET_REVIEWS_QUERY,
       variables: {
         filters: {
-          productId: Number(productId),
+          productId,
+          shopId,
+          rating,
+          orderId,
         },
       },
     });

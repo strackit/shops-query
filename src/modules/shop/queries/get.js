@@ -25,6 +25,9 @@ const GET_SHOPS = gql`
     cartCount
     phone
     templateName
+    twitter
+    instagram
+    facebook
     siteConfigurations {
       shopId
       googleAnalytics

@@ -1,6 +1,7 @@
-import { fetchOrders, modifyOrder } from './controller/index.js';
+import { fetchOrders, modifyOrder, cancelOrder } from './controller/index.js';
 
 export {
   fetchOrders,
   modifyOrder,
+  cancelOrder
 };
