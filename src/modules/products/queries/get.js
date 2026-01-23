@@ -71,7 +71,7 @@ export const GET_PRODUCTS = gql`
   }
 }
 `;
-export const fetchProducts = async ({ shopId = null, productId = null, categoryId = null, byProductId = false }) => {
+export const fetchProducts = async ({ shopId = null, productId = null, categoryId = null, masterCategoryId = null, start = null, userId = null, end = null, byProductId = false }) => {
   const variables = { filter: {} };
 
   if (shopId) {
@@ -80,6 +80,22 @@ export const fetchProducts = async ({ shopId = null, productId = null, categoryI
 
   if (categoryId) {
     variables.filter.categoryId = Number(categoryId);
+  }
+
+  if (masterCategoryId) {
+    variables.filter.masterCategoryId = Number(masterCategoryId);
+  }
+
+  if (start) {
+    variables.filter.start = Number(start);
+  }
+
+  if (end) {
+    variables.filter.end = Number(end);
+  }
+
+  if (userId) {
+    variables.filter.userId = Number(userId);
   }
 
   if (productId) {
