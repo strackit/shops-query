@@ -6,51 +6,24 @@ const PRODUCTS_BY_CATEGORY = gql`
       id
       number
       name
-      localName
-      hsnCode
-      tax
-      prize
+      addedon
+      description
       dnp
+      discount
+      featureImage
+      isOnline
       noStock
       minStock
-      description
-      seoKeyword
-      howToUse
-      otherInformation
-      shopId
-      featureImage
-      mastercategory
-      category
-      categoryId
-      publish
-      viewPrice
-      discount
       offerends
-      views
-      isOnline
+      prize
       productId
-      productCategoryId
-      barcode
-      lastUpdate
-      addedon
+      tax
+      views 
       wishList {
         like
       }
       isAddedToCart {
         inCart
-      }
-      quantity {
-        quantity
-      }
-      specification
-      productImage {
-        id
-        image
-        productId
-      }
-      Specifications {
-        specification
-        value
       }
     }
   }

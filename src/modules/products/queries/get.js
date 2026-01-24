@@ -68,9 +68,73 @@ export const GET_PRODUCTS = gql`
     views
     shopId
     seoKeyword
+    variantOf
+    variantOptions {
+      name
+      options {
+        productId
+        value
+      }
+    }    
   }
 }
 `;
+
+export const GET_ALL_PRODUCTS = gql`
+  query GetProducts($filter: productfilter) {
+  products(filter: $filter) {
+    id
+    number
+    name    
+    wishList {
+      like
+    }
+    isAddedToCart {
+      inCart
+    }
+    addedon
+    description
+    dnp
+    discount
+    featureImage
+    isOnline
+    noStock
+    minStock
+    offerends
+    prize
+    productId
+    tax
+    views 
+  }
+}
+`;
+
+export const fetchallProducts = async (shopId, start = null, userId = null, end = null ) => {
+  const variables = { filter: {} };
+  if (shopId) {
+    variables.filter.shopId = Number(shopId);
+  }
+    if (userId) {
+    variables.filter.userId = Number(userId);
+  }
+    if (start) {
+    variables.filter.start = Number(start);
+  }
+    if (end) {
+    variables.filter.end = Number(end);
+  }
+  try {
+    const response = await client.query({
+      query: GET_ALL_PRODUCTS,
+      variables,
+    });
+    return response?.data?.products ?? [];
+  } catch (error) {
+    console.error("Failed to fetch products:", error.message || error);
+    return [];
+  }
+};
+
 export const fetchProducts = async ({ shopId = null, productId = null, categoryId = null, masterCategoryId = null, start = null, userId = null, end = null, byProductId = false }) => {
   const variables = { filter: {} };
 

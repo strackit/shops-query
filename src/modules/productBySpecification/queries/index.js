@@ -6,66 +6,24 @@ export const PRODUCT_BY_SPECIFICATION = gql`
       id
       number
       name
-      localName
-      hsnCode
       tax
       prize
       dnp
       noStock
       minStock
       description
-      seoKeyword
-      howToUse
-      otherInformation
-      shopId
       featureImage
-      mastercategory
-      category
-      categoryId
-      publish
-      viewPrice
       discount
       offerends
       views
       isOnline
       productId
-      productCategoryId
-      barcode
-      lastUpdate
       addedon
       wishList {
         like
       }
       isAddedToCart {
         inCart
-      }
-      quantity {
-        quantity
-      }
-      specification
-      spec {
-        SpecificationMastername
-        value {
-          varientId
-          products {
-            productId
-            value
-            qty
-          }
-        }
-      }
-      productImage {
-        id
-        image
-        productId
-      }
-      Varients {
-        varientId
-        productId
-      }
-      Specifications {
-        specification
-        value
       }
     }
   }
