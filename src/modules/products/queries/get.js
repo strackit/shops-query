@@ -85,42 +85,58 @@ export const GET_ALL_PRODUCTS = gql`
   products(filter: $filter) {
     id
     number
-    name    
+    name
+    localName
+    hsnCode
+    tax
+    prize
+    dnp
+    noStock
+    minStock
+    description
+    seoKeyword
+    howToUse
+    otherInformation
+    shopId
+    featureImage
+    mastercategory
+    category
+    categoryId
+    publish
+    viewPrice
+    discount
+    offerends
+    views
+    isOnline
+    productId
+    productCategoryId
+    barcode
+    lastUpdate
+    addedon
     wishList {
       like
     }
     isAddedToCart {
       inCart
     }
-    addedon
-    description
-    dnp
-    discount
-    featureImage
-    isOnline
-    noStock
-    minStock
-    offerends
-    prize
-    productId
-    tax
-    views 
+    specification
+    variantOf
   }
 }
 `;
 
-export const fetchallProducts = async (shopId, start = null, userId = null, end = null ) => {
+export const fetchallProducts = async (shopId, start = null, userId = null, end = null) => {
   const variables = { filter: {} };
   if (shopId) {
     variables.filter.shopId = Number(shopId);
   }
-    if (userId) {
+  if (userId) {
     variables.filter.userId = Number(userId);
   }
-    if (start) {
+  if (start) {
     variables.filter.start = Number(start);
   }
-    if (end) {
+  if (end) {
     variables.filter.end = Number(end);
   }
   try {

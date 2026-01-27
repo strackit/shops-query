@@ -5,26 +5,42 @@ const GET_TOP_PRODUCTS = gql`
     topProducts(filter: $filter) {
       id
       number
-      name    
+      name
+      localName
+      hsnCode
+      tax
+      prize
+      dnp
+      noStock
+      minStock
+      description
+      seoKeyword
+      howToUse
+      otherInformation
+      shopId
+      featureImage
+      mastercategory
+      category
+      categoryId
+      publish
+      viewPrice
+      discount
+      offerends
+      views
+      isOnline
+      productId
+      productCategoryId
+      barcode
+      lastUpdate
+      addedon
       wishList {
         like
       }
       isAddedToCart {
         inCart
       }
-      addedon
-      description
-      dnp
-      discount
-      featureImage
-      isOnline
-      noStock
-      minStock
-      offerends
-      prize
-      productId
-      tax
-      views 
+      specification
+      variantOf 
     }
   }
 `;
