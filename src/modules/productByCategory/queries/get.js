@@ -6,25 +6,41 @@ const PRODUCTS_BY_CATEGORY = gql`
       id
       number
       name
-      addedon
-      description
+      localName
+      hsnCode
+      tax
+      prize
       dnp
-      discount
-      featureImage
-      isOnline
       noStock
       minStock
+      description
+      seoKeyword
+      howToUse
+      otherInformation
+      shopId
+      featureImage
+      mastercategory
+      category
+      categoryId
+      publish
+      viewPrice
+      discount
       offerends
-      prize
+      views
+      isOnline
       productId
-      tax
-      views 
+      productCategoryId
+      barcode
+      lastUpdate
+      addedon
       wishList {
         like
       }
       isAddedToCart {
         inCart
       }
+      specification
+      variantOf
     }
   }
 `;
