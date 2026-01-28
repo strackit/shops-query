@@ -39,19 +39,8 @@ const PRODUCTS_BY_CATEGORY = gql`
       isAddedToCart {
         inCart
       }
-      quantity {
-        quantity
-      }
       specification
-      productImage {
-        id
-        image
-        productId
-      }
-      Specifications {
-        specification
-        value
-      }
+      variantOf
     }
   }
 `;

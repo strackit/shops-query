@@ -68,10 +68,90 @@ export const GET_PRODUCTS = gql`
     views
     shopId
     seoKeyword
+    variantOf
+    variantOptions {
+      name
+      options {
+        productId
+        value
+      }
+    }    
   }
 }
 `;
-export const fetchProducts = async ({ shopId = null, productId = null, categoryId = null, byProductId = false }) => {
+
+export const GET_ALL_PRODUCTS = gql`
+  query GetProducts($filter: productfilter) {
+  products(filter: $filter) {
+    id
+    number
+    name
+    localName
+    hsnCode
+    tax
+    prize
+    dnp
+    noStock
+    minStock
+    description
+    seoKeyword
+    howToUse
+    otherInformation
+    shopId
+    featureImage
+    mastercategory
+    category
+    categoryId
+    publish
+    viewPrice
+    discount
+    offerends
+    views
+    isOnline
+    productId
+    productCategoryId
+    barcode
+    lastUpdate
+    addedon
+    wishList {
+      like
+    }
+    isAddedToCart {
+      inCart
+    }
+    specification
+    variantOf
+  }
+}
+`;
+
+export const fetchallProducts = async (shopId, start = null, userId = null, end = null) => {
+  const variables = { filter: {} };
+  if (shopId) {
+    variables.filter.shopId = Number(shopId);
+  }
+  if (userId) {
+    variables.filter.userId = Number(userId);
+  }
+  if (start) {
+    variables.filter.start = Number(start);
+  }
+  if (end) {
+    variables.filter.end = Number(end);
+  }
+  try {
+    const response = await client.query({
+      query: GET_ALL_PRODUCTS,
+      variables,
+    });
+    return response?.data?.products ?? [];
+  } catch (error) {
+    console.error("Failed to fetch products:", error.message || error);
+    return [];
+  }
+};
+
+export const fetchProducts = async ({ shopId = null, productId = null, categoryId = null, masterCategoryId = null, start = null, userId = null, end = null, byProductId = false }) => {
   const variables = { filter: {} };
 
   if (shopId) {
@@ -80,6 +160,22 @@ export const fetchProducts = async ({ shopId = null, productId = null, categoryI
 
   if (categoryId) {
     variables.filter.categoryId = Number(categoryId);
+  }
+
+  if (masterCategoryId) {
+    variables.filter.masterCategoryId = Number(masterCategoryId);
+  }
+
+  if (start) {
+    variables.filter.start = Number(start);
+  }
+
+  if (end) {
+    variables.filter.end = Number(end);
+  }
+
+  if (userId) {
+    variables.filter.userId = Number(userId);
   }
 
   if (productId) {

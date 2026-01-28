@@ -3,50 +3,44 @@ import client, { gql } from "../../../utils/apolloClient.js";
 const GET_TOP_PRODUCTS = gql`
   query Query($filter: top) {
     topProducts(filter: $filter) {
+      id
+      number
+      name
+      localName
+      hsnCode
+      tax
+      prize
+      dnp
+      noStock
+      minStock
+      description
+      seoKeyword
+      howToUse
+      otherInformation
+      shopId
+      featureImage
+      mastercategory
+      category
+      categoryId
+      publish
+      viewPrice
+      discount
+      offerends
+      views
+      isOnline
+      productId
+      productCategoryId
+      barcode
+      lastUpdate
+      addedon
       wishList {
         like
       }
-      views
-      viewPrice
-      tax
-      shopId
-      seoKeyword
-      quantity {
-        quantity
-      }
-      publish
-      productImage {
-        productId
-        image
-        id
-      }
-      productId
-      productCategoryId
-      prize
-      otherInformation
-      offerends
-      number
-      noStock
-      name
-      minStock
-      mastercategory
-      localName
-      lastUpdate
-      isOnline
       isAddedToCart {
         inCart
       }
-      id
-      hsnCode
-      howToUse
-      featureImage
-      dnp
-      discount
-      description
-      categoryId
-      category
-      barcode
-      addedon
+      specification
+      variantOf 
     }
   }
 `;
