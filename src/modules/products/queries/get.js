@@ -120,7 +120,7 @@ export const GET_ALL_PRODUCTS = gql`
       inCart
     }
     specification
-    variantOf 
+    variantOf
   }
 }
 `;
