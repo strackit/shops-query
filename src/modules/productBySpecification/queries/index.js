@@ -57,6 +57,8 @@ export const fetchProductsBySpecification = async (filter) => {
       variablesFilter.specifications = [];
     }
 
+    if (filter.secondaryCategoryName != null) variablesFilter.secondaryCategoryName = filter.secondaryCategoryName;
+    if (filter.masterCategoryName != null) variablesFilter.masterCategoryName = filter.masterCategoryName;
     if (filter.searchKey != null) variablesFilter.searchKey = filter.searchKey;
     if (filter.minPrice != null) variablesFilter.minPrice = Number(filter.minPrice);
     if (filter.maxPrice != null) variablesFilter.maxPrice = Number(filter.maxPrice);
