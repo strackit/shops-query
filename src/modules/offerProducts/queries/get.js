@@ -3,37 +3,71 @@ import client, { gql } from '../../../utils/apolloClient.js';
 export const GET_OFFER_PRODUCTS = gql`
   query GetofferProducts($filter: offer) {
   offerProducts(filter: $filter) {
+    id
+    number
+    name
+    
     wishList {
       like
     }
-    views
-    viewPrice
-    tax
-    specification
-    shopId
-    seoKeyword
+    isAddedToCart {
+      inCart
+    }
+    productImage {
+      id
+      image
+      productId
+    }
+    Specifications {
+      specification
+      value
+    }
+    Varients {
+      varientId
+      productId
+    }
     quantity {
       quantity
     }
-    publish
-    productImage {
-      productId
-      image
-      id
+    spec {
+      SpecificationMastername
+      value {
+        varientId
+        products {
+          productId
+          value
+          qty
+        }
+      }
     }
-    productId
-    productCategoryId
-    prize
-    otherInformation
-    offerends
-    number
-    noStock
-    name
-    minStock
-    mastercategory
-    localName
-    lastUpdate
+    specification
+    addedon
+    barcode
+    category
+    categoryId
+    description
+    hsnCode
+    howToUse
+    dnp
+    discount
+    featureImage
     isOnline
+    lastUpdate
+    localName
+    mastercategory
+    noStock
+    minStock
+    offerends
+    otherInformation
+    prize
+    productCategoryId
+    productId
+    publish
+    tax
+    viewPrice
+    views
+    shopId
+    seoKeyword
   }
 }`;
 
