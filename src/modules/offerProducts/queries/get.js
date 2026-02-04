@@ -34,6 +34,27 @@ export const GET_OFFER_PRODUCTS = gql`
     localName
     lastUpdate
     isOnline
+    id
+    description
+    discount
+    isAddedToCart {
+      inCart
+    }
+    spec {
+      SpecificationMastername
+      value {
+        varientId
+        products {
+          productId
+          value
+          qty
+        }
+      }
+    }
+    Specifications {
+      specification
+      value
+    }
   }
 }`;
 
@@ -63,10 +84,8 @@ export const GET_OFFER_PRODUCTS_BASIC_DETAILS = gql`
     noStock
   }
 }`;
-
 export const getOfferProductsController = async (shopId) => {
   if (!shopId) throw new Error('shopId is required');
-
   try {
     const response = await client.query({
       query: GET_OFFER_PRODUCTS,
@@ -76,7 +95,6 @@ export const getOfferProductsController = async (shopId) => {
         },
       },
     });
-
     return response?.data?.offerProducts ?? [];
   } catch (error) {
     console.error(
