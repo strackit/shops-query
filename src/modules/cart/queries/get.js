@@ -19,6 +19,10 @@ export const GET_CART = gql`
       hsnCode
       description
       category
+      specifications {
+        name
+        value
+      }
     }
   }
 `;
