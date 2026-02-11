@@ -20,7 +20,7 @@ export const GET_CART = gql`
       description
       category
       specifications {
-        name
+        specification
         value
       }
     }
