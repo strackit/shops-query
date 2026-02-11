@@ -1,5 +1,5 @@
 import client from '../../../utils/apolloClient.js';
-import { GET_SEARCH_FILTER } from '../queries/index.js';
+import { GET_SEARCH_FILTER } from '..//queries/index.js';
 
 export const fetchSearchFilter = async (shopId) => {
   try {

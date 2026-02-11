@@ -1,3 +1,3 @@
-import { fetchSearchFilter } from './Controller/index.js';
+import { fetchSearchFilter } from './Controller/index';
 
 export { fetchSearchFilter };
