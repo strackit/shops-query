@@ -61,6 +61,10 @@ export const GET_ORDER_HISTORY = gql`
           barcode
           lastUpdate
           addedon
+          Specifications {
+            specification
+            value
+          }
         }
       }
     }
