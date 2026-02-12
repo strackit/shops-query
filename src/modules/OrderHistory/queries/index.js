@@ -1,4 +1,4 @@
-import client ,  { gql } from '../../../utils/apolloClient.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
 export const GET_ORDER_HISTORY = gql`
   query OrderHistory($filter: orders) {
@@ -61,6 +61,10 @@ export const GET_ORDER_HISTORY = gql`
           barcode
           lastUpdate
           addedon
+          Specifications {
+            specification
+            value
+          }
         }
       }
     }

@@ -19,11 +19,15 @@ export const GET_CART = gql`
       hsnCode
       description
       category
+      Specifications {
+        specification
+        value
+      }
     }
   }
 `;
 
-export const fetchCart = async (shopId , userId) => {
+export const fetchCart = async (shopId, userId) => {
   try {
     const { data, errors } = await client.query({
       query: GET_CART,
