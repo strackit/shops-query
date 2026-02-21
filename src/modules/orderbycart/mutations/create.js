@@ -16,6 +16,7 @@ export const ORDER_BY_CART = gql`
     $rating: Int
     $billingAddress: Int
     $shippingAddress: Int
+    $couponId: Int
   ) {
     OrderbyCart(
       userId: $userId
@@ -32,6 +33,7 @@ export const ORDER_BY_CART = gql`
       rating: $rating
       billingAddress: $billingAddress
       shippingAddress: $shippingAddress
+      couponId: $couponId
     ) {
       id
       shopId
