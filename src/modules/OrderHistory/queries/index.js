@@ -65,6 +65,7 @@ export const GET_ORDER_HISTORY = gql`
             specification
             value
           }
+          isCombo
         }
       }
     }

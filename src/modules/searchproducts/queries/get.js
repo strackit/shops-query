@@ -48,6 +48,11 @@ const SEARCH_PRODUCTS = gql`
         image
         productId
       }
+      stockStatus {
+      totalQty
+      hasVariants
+      }
+      isCombo
     }
   }
 `;

@@ -76,6 +76,11 @@ export const GET_PRODUCTS = gql`
         value
       }
     }    
+    stockStatus {
+      totalQty
+      hasVariants
+    }
+    isCombo    
   }
 }
 `;
@@ -121,6 +126,11 @@ export const GET_ALL_PRODUCTS = gql`
     }
     specification
     variantOf
+    stockStatus {
+      totalQty
+      hasVariants
+    }
+    isCombo  
   }
 }
 `;

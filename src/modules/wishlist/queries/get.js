@@ -18,6 +18,11 @@ const GET_WISHLIST = gql`
     discount
     description
     category
+    stockStatus {
+      totalQty
+      hasVariants
+    }
+    isCombo
   }
 }
 `;

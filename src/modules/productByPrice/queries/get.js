@@ -24,6 +24,11 @@ const GET_PRODUCTS_BY_PRICE = gql`
       description
       isOnline
       noStock
+      stockStatus {
+      totalQty
+      hasVariants
+      }
+      isCombo
     }
   }
 `;
