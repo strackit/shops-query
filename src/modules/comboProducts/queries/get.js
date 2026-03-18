@@ -37,29 +37,11 @@ const GET_COMBO_PRODUCTS = gql`
       addedon
       wishList { like }
       isAddedToCart { inCart }
-      quantity { quantity }
       specification
-      spec {
-        SpecificationMastername
-        value {
-          varientId
-          products {
-            productId
-            value
-            qty
-          }
-        }
-      }
       productImage { id image productId }
-      Varients { varientId productId }
       variantOf
       isCombo
-      variantOptions {
-        name
-        options { productId value }
-      }
       stockStatus { totalQty hasVariants }
-      Specifications { specification value }
     }
   }
 `;
