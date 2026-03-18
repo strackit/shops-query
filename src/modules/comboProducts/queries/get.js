@@ -9,7 +9,6 @@ const GET_COMBO_PRODUCTS = gql`
       number
       name
       localName
-      hsnCode
       tax
       prize
       dnp
@@ -17,9 +16,6 @@ const GET_COMBO_PRODUCTS = gql`
       minStock
       description
       seoKeyword
-      howToUse
-      otherInformation
-      shopId
       featureImage
       mastercategory
       category
@@ -32,7 +28,6 @@ const GET_COMBO_PRODUCTS = gql`
       isOnline
       productId
       productCategoryId
-      barcode
       lastUpdate
       addedon
       wishList { like }
