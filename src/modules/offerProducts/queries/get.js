@@ -34,6 +34,11 @@ export const GET_OFFER_PRODUCTS = gql`
     localName
     lastUpdate
     isOnline
+    stockStatus {
+      totalQty
+      hasVariants
+    }
+    isCombo
   }
 }`;
 

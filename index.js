@@ -38,6 +38,7 @@ import forgotpassword from './src/modules/forgotpassword/index.js';
 import * as SecondaryCategories from './src/modules/SecondaryCategories/index.js';
 import * as fetchcms from './src/modules/cms/index.js'
 import templateSettings from './src/modules/templateSettings/index.js';
+import comboProducts from './src/modules/comboProducts/index.js';
 
 // Release 0.5
 
@@ -81,5 +82,6 @@ export default {
   register,
   forgotpassword,
   fetchcms,
-  templateSettings
+  templateSettings,
+  comboProducts
 };

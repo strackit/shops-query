@@ -41,6 +41,11 @@ const GET_TOP_PRODUCTS = gql`
       }
       specification
       variantOf 
+      stockStatus {
+      totalQty
+      hasVariants
+      }
+      isCombo
     }
   }
 `;

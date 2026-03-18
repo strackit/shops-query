@@ -41,6 +41,11 @@ export const PRODUCT_BY_SPECIFICATION = gql`
       }
       specification
       variantOf
+      stockStatus {
+      totalQty
+      hasVariants
+      }
+      isCombo
     }
   }
 `;
