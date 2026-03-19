@@ -2,7 +2,7 @@
 import { gql } from 'graphql-tag';
 import client from '../../../utils/apolloClient.js';
 
-const GET_COMBO_PRODUCTS = gql`
+export const GET_COMBO_PRODUCTS = gql`
   query ComboProducts($filter: comboProductFilter) {
     comboProducts(filter: $filter) {
       id
