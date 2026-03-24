@@ -21,6 +21,8 @@ export const GET_PRODUCTS = gql`
     Specifications {
       specification
       value
+      type
+      options
     }
     Varients {
       varientId
