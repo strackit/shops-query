@@ -39,6 +39,7 @@ import * as SecondaryCategories from './src/modules/SecondaryCategories/index.js
 import * as fetchcms from './src/modules/cms/index.js'
 import templateSettings from './src/modules/templateSettings/index.js';
 import comboProducts from './src/modules/comboProducts/index.js';
+import * as faq from './src/modules/faq/index.js';
 
 // Release 0.5
 
@@ -83,5 +84,6 @@ export default {
   forgotpassword,
   fetchcms,
   templateSettings,
-  comboProducts
+  comboProducts,
+  faq
 };
