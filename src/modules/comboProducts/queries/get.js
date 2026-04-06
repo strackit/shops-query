@@ -17,6 +17,11 @@ export const GET_COMBO_PRODUCTS = gql`
       description
       seoKeyword
       featureImage
+      productImage {
+        id
+        image
+        productId
+      }
       mastercategory
       category
       categoryId

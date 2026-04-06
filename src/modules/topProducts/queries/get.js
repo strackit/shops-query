@@ -19,6 +19,11 @@ const GET_TOP_PRODUCTS = gql`
       otherInformation
       shopId
       featureImage
+      productImage {
+        id
+        image
+        productId
+      }
       mastercategory
       category
       categoryId

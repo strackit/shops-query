@@ -18,11 +18,11 @@ export const GET_COUPON_CODE = gql`
   }
 `;
 
-export const getCouponCode = async (shopId) => {
+export const getCouponCode = async (shopId , userId) => {
   try {
     const response = await client.query({
       query: GET_COUPON_CODE,
-      variables: { filter: { shopId: Number(shopId) } }
+      variables: { filter: { shopId: Number(shopId) , userId: Number(userId) } }
     });
     return response?.data?.couponCode ?? [];
   } catch (err) {

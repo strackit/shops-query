@@ -46,6 +46,11 @@ const PRODUCTS_BY_CATEGORY = gql`
       hasVariants
       }
       isCombo
+      productImage {
+        id
+        image
+        productId
+      }
     }
   }
 `;

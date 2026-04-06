@@ -23,6 +23,11 @@ const GET_WISHLIST = gql`
       hasVariants
     }
     isCombo
+    productImage {
+      id
+      image
+      productId
+    }
   }
 }
 `;
