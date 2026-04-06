@@ -1,11 +1,11 @@
 import client , {gql} from '../../../utils/apolloClient.js';
 import { GET_COUPON_CODE } from '../queries/index.js';
 
-export const fetchCouponCode = async (shopId) => {
+export const fetchCouponCode = async (shopId , userId) => {
   try {
     const { data } = await client.query({
       query: GET_COUPON_CODE,
-      variables: { filter: { shopId: Number(shopId) } }
+      variables: { filter: { shopId: Number(shopId) , userId: Number(userId) } }
     });
 
     return data?.couponCode || [];
