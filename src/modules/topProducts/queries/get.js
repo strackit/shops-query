@@ -19,11 +19,6 @@ const GET_TOP_PRODUCTS = gql`
       otherInformation
       shopId
       featureImage
-      productImage {
-        id
-        image
-        productId
-      }
       mastercategory
       category
       categoryId
@@ -69,11 +64,6 @@ const GET_BASIC_DETAILS_OF_TOP_PRODUCTS = gql`
       tax
       wishList {
         like
-      }
-      productImage {
-        id
-        image
-        productId
       }
       featureImage
       description

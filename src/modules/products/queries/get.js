@@ -13,11 +13,6 @@ export const GET_PRODUCTS = gql`
     isAddedToCart {
       inCart
     }
-    productImage {
-      id
-      image
-      productId
-    }
     Specifications {
       specification
       value
@@ -53,11 +48,6 @@ export const GET_PRODUCTS = gql`
     dnp
     discount
     featureImage
-    productImage {
-      id
-      image
-      productId
-    }
     isOnline
     lastUpdate
     localName
@@ -111,11 +101,6 @@ export const GET_ALL_PRODUCTS = gql`
     otherInformation
     shopId
     featureImage
-    productImage {
-      id
-      image
-      productId
-    }
     mastercategory
     category
     categoryId

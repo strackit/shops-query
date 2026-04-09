@@ -17,11 +17,6 @@ export const GET_COMBO_PRODUCTS = gql`
       description
       seoKeyword
       featureImage
-      productImage {
-        id
-        image
-        productId
-      }
       mastercategory
       category
       categoryId
@@ -38,7 +33,6 @@ export const GET_COMBO_PRODUCTS = gql`
       wishList { like }
       isAddedToCart { inCart }
       specification
-      productImage { id image productId }
       variantOf
       isCombo
       stockStatus { totalQty hasVariants }

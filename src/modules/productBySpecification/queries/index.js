@@ -19,11 +19,6 @@ export const PRODUCT_BY_SPECIFICATION = gql`
       otherInformation
       shopId
       featureImage
-      productImage {
-        id
-        image
-        productId
-      }
       mastercategory
       category
       categoryId
