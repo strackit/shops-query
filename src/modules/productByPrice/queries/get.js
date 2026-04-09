@@ -15,11 +15,6 @@ const GET_PRODUCTS_BY_PRICE = gql`
       wishList {
         like
       }
-      productImage {
-        id
-        image
-        productId
-      }
       featureImage
       description
       isOnline

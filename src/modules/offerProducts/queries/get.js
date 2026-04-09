@@ -16,11 +16,6 @@ export const GET_OFFER_PRODUCTS = gql`
       quantity
     }
     publish
-    productImage {
-      productId
-      image
-      id
-    }
     productId
     productCategoryId
     prize
@@ -56,11 +51,6 @@ export const GET_OFFER_PRODUCTS_BASIC_DETAILS = gql`
     tax
     wishList {
       like
-    }
-    productImage {
-      id
-      image
-      productId
     }
     featureImage
     description

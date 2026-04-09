@@ -43,11 +43,6 @@ const SEARCH_PRODUCTS = gql`
         quantity
       }
       specification
-      productImage {
-        id
-        image
-        productId
-      }
       stockStatus {
       totalQty
       hasVariants
