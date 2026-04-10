@@ -6,23 +6,26 @@ export const ADD_TO_CART = gql`
     $productId: Int!
     $shopId: Int!
     $quantity: Int!
+    $specifications: GraphQLJSON
   ) {
     Cart(
       userId: $userId
       productId: $productId
       shopId: $shopId
       quantity: $quantity
+      specifications: $specifications
     ) {
       id
       productId
       userId
       shopId
       quantity
+      specification
     }
   }
 `;
 
-export const addToCart = async ({ productId, shopId, userId, quantity = 1 }) => {
+export const addToCart = async ({ productId, shopId, userId, quantity = 1, specifications }) => {
   try {
     const { data, errors } = await client.mutate({
       mutation: ADD_TO_CART,
@@ -30,7 +33,8 @@ export const addToCart = async ({ productId, shopId, userId, quantity = 1 }) => 
         userId: Number(userId),
         productId: Number(productId),
         shopId: Number(shopId),
-        quantity: Number(quantity)
+        quantity: Number(quantity),
+        specifications: specifications || null
       }
     });
 

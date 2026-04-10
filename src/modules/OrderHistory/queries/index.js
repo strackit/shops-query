@@ -18,6 +18,8 @@ export const GET_ORDER_HISTORY = gql`
       feedback
       paymentInfo
       timestamp
+      userExpectedDeliveryDatetime
+      remarks
       orderdetails {
         id
         masterId
@@ -30,6 +32,7 @@ export const GET_ORDER_HISTORY = gql`
         totalPrice
         status
         returned
+        specifications
         Products {
           id
           number
@@ -64,6 +67,8 @@ export const GET_ORDER_HISTORY = gql`
           Specifications {
             specification
             value
+            type
+            options
           }
           isCombo
         }
