@@ -3,26 +3,29 @@ import client, { gql } from '../../../utils/apolloClient.js';
 export const GET_CART = gql`
   query GetCart($filter: CartFilter1) {
     cart(filter: $filter) {
-      id
-      productId
-      userId
-      shopId
-      quantity
-      prize
+    id
+    productId
+    userId
+    shopId
+    quantity
+    prize
       Discount
       name
       featureImage
       tax
       noStock
       minStock
-      mastercategory
-      hsnCode
+    mastercategory
+    hsnCode
       description
       category
-      Specifications {
-        specification
-        value
-      }
+    Specifications {
+      specification
+      value
+      type
+      options
+    }
+    specification
     }
   }
 `;
