@@ -48,6 +48,11 @@ export const GET_PRODUCTS = gql`
     dnp
     discount
     featureImage
+    productImage {
+      id
+      image
+      productId
+    }
     isOnline
     lastUpdate
     localName
