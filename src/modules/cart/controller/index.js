@@ -2,12 +2,13 @@ import { addToCart } from '../mutations/add.js';
 import { updateCartItem, removeFromCart } from '../mutations/remove.js';
 import { fetchCart } from '../queries/get.js';
 
-export const addToCartController = async ({ productId, shopId, userId, quantity = 1 }) => {
+export const addToCartController = async ({ productId, shopId, userId, quantity = 1, specifications }) => {
+
   try {
     // First attempt to add to cart
     let result;
     try {
-      result = await addToCart({ productId, shopId, userId, quantity });
+      result = await addToCart({ productId, shopId, userId, quantity, specifications });
       if (result) {
         return result;
       }
@@ -17,10 +18,10 @@ export const addToCartController = async ({ productId, shopId, userId, quantity 
 
     // If add fails or returns null, try updating quantity
     result = await updateCartItem({ userId, productId, shopId, quantity });
-    
+
     // Verify the item was actually added/updated
     const cartItems = await fetchCart(shopId, userId);
-    const itemInCart = cartItems.find(item => 
+    const itemInCart = cartItems.find(item =>
       item.productId === productId && item.shopId === shopId
     );
 
@@ -39,12 +40,12 @@ export const addToCartController = async ({ productId, shopId, userId, quantity 
 export const fetchCartController = async (shopId, userId) => {
   try {
     const cartItems = await fetchCart(shopId, userId);
-    
+
     if (!Array.isArray(cartItems)) {
       console.warn('Unexpected cart data format:', cartItems);
       return [];
     }
-    
+
     return cartItems;
   } catch (error) {
     console.error('Controller failed to fetch cart:', error.message);
@@ -55,10 +56,10 @@ export const fetchCartController = async (shopId, userId) => {
 export const removeFromCartController = async ({ userId, productId, shopId }) => {
   try {
     const result = await removeFromCart({ userId, productId, shopId });
-    
+
     // Verify the item was actually removed
     const cartItems = await fetchCart(shopId, userId);
-    const itemStillInCart = cartItems.some(item => 
+    const itemStillInCart = cartItems.some(item =>
       item.productId === productId && item.shopId === shopId
     );
 
@@ -77,10 +78,10 @@ export const removeFromCartController = async ({ userId, productId, shopId }) =>
 export const updateCartQuantityController = async ({ userId, productId, shopId, quantity }) => {
   try {
     const result = await updateCartItem({ userId, productId, shopId, quantity });
-    
+
     // Verify the quantity was actually updated
     const cartItems = await fetchCart(shopId, userId);
-    const item = cartItems.find(i => 
+    const item = cartItems.find(i =>
       i.productId === productId && i.shopId === shopId
     );
 
