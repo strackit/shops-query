@@ -18,6 +18,8 @@ export const GET_ORDER_HISTORY = gql`
       feedback
       paymentInfo
       timestamp
+      userExpectedDeliveryDatetime
+      remarks
       orderdetails {
         id
         masterId

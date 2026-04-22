@@ -17,6 +17,8 @@ export const ORDER_BY_CART = gql`
     $billingAddress: Int
     $shippingAddress: Int
     $couponId: Int
+    $userExpectedDeliveryDatetime: DateTime
+    $remarks: String
   ) {
     OrderbyCart(
       userId: $userId
@@ -34,6 +36,8 @@ export const ORDER_BY_CART = gql`
       billingAddress: $billingAddress
       shippingAddress: $shippingAddress
       couponId: $couponId
+      userExpectedDeliveryDatetime: $userExpectedDeliveryDatetime
+      remarks: $remarks
     ) {
       id
       shopId
@@ -50,6 +54,8 @@ export const ORDER_BY_CART = gql`
       paymentInfo
       billingAddress
       shippingAddress
+      userExpectedDeliveryDatetime
+      remarks
     }
   }
 `;
