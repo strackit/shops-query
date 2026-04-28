@@ -1,1 +1,1 @@
-export { loginUserWithOTP, verifyOtp, getUserData, getUserId } from "./controller/index.js" ;
+export { loginUserWithOTP, verifyOtp } from "./controller/index.js" ;
