@@ -2,81 +2,61 @@ import fetch from "cross-fetch";
 
 const BASE_URL = "https://you.strackit.com/ALUMNI/loginandsignup/";
 
+// Send OTP - uses loginorregistration.php (same as BOO)
+// Returns: { userfound: 0|1, otpsend: "Message Sent" }
 export async function loginUserWithOTP(mobile) {
   try {
-    const response = await fetch(`${BASE_URL}verifymobilenumber.php`, {
+    const formData = new FormData();
+    formData.append("mobile", mobile);
+
+    const response = await fetch(`${BASE_URL}loginorregistration.php`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        mobile,
-        field: "login",
-      }).toString(),
+      headers: { Accept: "application/json" },
+      body: formData,
     });
 
     if (!response.ok) {
       throw new Error(`Login failed with status: ${response.status}`);
     }
 
-    const data = await response.json();
-    return data;
+    const data = await response.text();
+    return JSON.parse(data);
   } catch (error) {
     console.error("Login API error:", error);
     throw error;
   }
 }
 
-const fetchUserProfile = async (mobile) => {
+// Verify OTP - uses verifyunregistermobile.php (same as BOO)
+// Requires active_user status from loginUserWithOTP response
+// Returns: { success: true, data: userData } or { success: false, error: "..." }
+export const verifyOtp = async (mobile, otp, activeUserStatus = 1) => {
   try {
+    const formData = new FormData();
+    formData.append("mobile", mobile);
+    formData.append("otp", otp);
+    formData.append("active_user", activeUserStatus);
+
     const response = await fetch(
-      `${BASE_URL}loginwithmobile.php`,
+      `${BASE_URL}verifyunregistermobile.php`,
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          mobile,
-        }).toString(),
+        headers: { Accept: "application/json" },
+        body: formData,
       }
     );
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching user data:", error);
-    return null;
-  }
-};
+    let data = await response.text();
+    data = JSON.parse(data);
 
-export const verifyOtp = async (mobile, otp) => {
-  try {
-    const response = await fetch(
-      `${BASE_URL}verifyotp.php`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          mobile,
-          otp,
-        }).toString(),
-      }
-    );
-
-    const data = await response.text();
-
-    if (data.trim() === "1") {
-      const profileData = await fetchUserProfile(mobile);
-      return { success: true, data: profileData };
+    if (data.otp_verification == 0) {
+      return { success: false, error: "Invalid OTP" };
     }
 
-    // Try parsing JSON (fallback for other formats)
+    // Parse user data from response
     let userData;
     try {
-      userData = JSON.parse(data);
+      userData = JSON.parse(data.user);
     } catch {
       userData = null;
     }
