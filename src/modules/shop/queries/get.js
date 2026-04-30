@@ -24,6 +24,7 @@ const GET_SHOPS = gql`
     customDomain
     cartCount
     phone
+    email
     templateName
     twitter
     instagram
