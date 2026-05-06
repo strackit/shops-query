@@ -4,14 +4,15 @@ const BASE_URL = "https://you.strackit.com/ALUMNI/loginandsignup/";
 
 export async function loginUserWithOTP(mobile) {
   try {
+    const formData = new FormData();
+    formData.append("mobile", mobile);
+
     const response = await fetch(`${BASE_URL}loginorregistration.php`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept": "application/json"
       },
-      body: new URLSearchParams({
-        mobile,
-      }).toString(),
+      body: formData,
     });
 
     if (!response.ok) {
@@ -28,18 +29,19 @@ export async function loginUserWithOTP(mobile) {
 
 export const verifyOtp = async (mobile, otp, active_user) => {
   try {
+    const formData = new FormData();
+    formData.append("mobile", mobile);
+    formData.append("otp", otp);
+    formData.append("active_user", active_user);
+
     const response = await fetch(
       `${BASE_URL}verifyunregistermobile.php`,
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Accept": "application/json"
         },
-        body: new URLSearchParams({
-          mobile,
-          otp,
-          active_user,
-        }).toString(),
+        body: formData,
       }
     );
 
@@ -51,7 +53,7 @@ export const verifyOtp = async (mobile, otp, active_user) => {
     // Extract data handling potential array response
     const data = Array.isArray(responseData) ? responseData[0] : responseData;
     
-    if (String(data.otp_verification) === "1" || data.otp_verification === true) {
+    if (data.otp_verification != 0) {
         let userData = null;
         if (data.user) {
             try {
