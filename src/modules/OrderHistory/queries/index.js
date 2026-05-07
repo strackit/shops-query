@@ -28,6 +28,7 @@ export const GET_ORDER_HISTORY = gql`
         tax
         dnp
         discount
+        customSpecification
         price
         totalPrice
         status

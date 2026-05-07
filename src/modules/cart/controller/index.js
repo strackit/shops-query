@@ -2,12 +2,12 @@ import { addToCart } from '../mutations/add.js';
 import { updateCartItem, removeFromCart } from '../mutations/remove.js';
 import { fetchCart } from '../queries/get.js';
 
-export const addToCartController = async ({ productId, shopId, userId, quantity = 1 }) => {
+export const addToCartController = async ({ productId, shopId, userId, quantity = 1, customSpecification = {} }) => {
   try {
     // First attempt to add to cart
     let result;
     try {
-      result = await addToCart({ productId, shopId, userId, quantity });
+      result = await addToCart({ productId, shopId, userId, quantity, customSpecification });
       if (result) {
         return result;
       }

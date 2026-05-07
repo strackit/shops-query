@@ -19,6 +19,7 @@ export const GET_CART = gql`
       hsnCode
       description
       category
+      customSpecification
       Specifications {
         specification
         value
