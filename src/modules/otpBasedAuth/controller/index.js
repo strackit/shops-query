@@ -4,14 +4,13 @@ const BASE_URL = "https://you.strackit.com/ALUMNI/loginandsignup/";
 
 export async function loginUserWithOTP(mobile) {
   try {
-    const response = await fetch(`${BASE_URL}verifymobilenumber.php`, {
+    const response = await fetch(`${BASE_URL}loginorregistration.php`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
         mobile,
-        field: "login",
       }).toString(),
     });
 
@@ -50,10 +49,10 @@ const fetchUserProfile = async (mobile) => {
   }
 };
 
-export const verifyOtp = async (mobile, otp) => {
+export const verifyOtp = async (mobile, otp, activeUserStatus = 1) => {
   try {
     const response = await fetch(
-      `${BASE_URL}verifyotp.php`,
+      `${BASE_URL}verifyunregistermobile.php`,
       {
         method: "POST",
         headers: {
@@ -62,30 +61,34 @@ export const verifyOtp = async (mobile, otp) => {
         body: new URLSearchParams({
           mobile,
           otp,
+          active_user: activeUserStatus,
         }).toString(),
       }
     );
 
-    const data = await response.text();
+    let data = await response.text();
+    data = JSON.parse(data);
 
-    if (data.trim() === "1") {
-      const profileData = await fetchUserProfile(mobile);
-      return { success: true, data: profileData };
-    }
-
-    // Try parsing JSON (fallback for other formats)
+    if (data.otp_verification == 0) {
+      return { success: false, error: "Invalid OTP" };
+    } else {
     let userData;
     try {
-      userData = JSON.parse(data);
+      userData = JSON.parse(data.user);
     } catch {
       userData = null;
     }
 
     if (userData && Object.keys(userData).length > 0) {
+      const profileData = await fetchUserProfile(mobile);
+      if (profileData && (profileData.auth || profileData.auth_token)) {
+        return { success: true, data: profileData };
+      }
       return { success: true, data: userData };
     }
 
     return { success: false, error: "Invalid OTP" };
+    }
   } catch (error) {
     console.error("OTP verification error:", error);
     return { success: false, error: error.message };
