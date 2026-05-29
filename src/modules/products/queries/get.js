@@ -82,7 +82,8 @@ export const GET_PRODUCTS = gql`
       totalQty
       hasVariants
     }
-    isCombo    
+    isCombo
+    isSupportCustomerAttachment    
   }
 }
 `;
@@ -132,7 +133,8 @@ export const GET_ALL_PRODUCTS = gql`
       totalQty
       hasVariants
     }
-    isCombo  
+    isCombo
+    isSupportCustomerAttachment  
   }
 }
 `;
