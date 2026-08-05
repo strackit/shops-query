@@ -36,6 +36,7 @@ const GET_SHOPS = gql`
       razorpaySecretKey
       phonePeKey
       phonePeId
+      metaPixelId
     }
     CMS {
       shopId

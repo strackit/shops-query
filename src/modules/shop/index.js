@@ -1,5 +1,6 @@
-import { fetchShops } from './controller/index.js';
+import { fetchShops, trackMetaEvent } from './controller/index.js';
 
 export default {
-  fetchShops
+  fetchShops,
+  trackMetaEvent
 };
