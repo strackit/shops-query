@@ -1,7 +1,7 @@
 import client, { gql } from '../../../utils/apolloClient.js';
 
 const TRACK_META_EVENT = gql`
-  mutation TrackMetaEvent($shopId: ID!, $eventName: String!, $eventId: String!, $customData: JSON, $userData: JSON) {
+  mutation TrackMetaEvent($shopId: ID!, $eventName: String!, $eventId: String!, $customData: GraphQLJSON, $userData: GraphQLJSON) {
     trackMetaEvent(shopId: $shopId, eventName: $eventName, eventId: $eventId, customData: $customData, userData: $userData) {
       success
       message
