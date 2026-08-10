@@ -37,6 +37,7 @@ const GET_SHOPS = gql`
       phonePeKey
       phonePeId
       metaPixelId
+      defaultPaymentGateway
     }
     CMS {
       shopId
