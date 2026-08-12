@@ -10,6 +10,7 @@ export const GET_SHIPPING_ZONES = gql`
       toPincode
       shippingCharge
       freeShippingThreshold
+      codCharge
       createdOn
     }
   }
