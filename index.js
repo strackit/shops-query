@@ -43,6 +43,7 @@ import * as faq from './src/modules/faq/index.js';
 import * as otpBasedAuth from './src/modules/otpBasedAuth/index.js';
 import * as attachments from './src/modules/attachments/index.js';
 import * as shippingZoneRate from './src/modules/ShippingZoneRate/index.js';
+import ledger from './src/modules/ledger/index.js';
 
 // Release 0.5
 
@@ -91,5 +92,6 @@ export default {
   faq,
   otpBasedAuth,
   attachments,
-  shippingZoneRate
+  shippingZoneRate,
+  ledger
 };
