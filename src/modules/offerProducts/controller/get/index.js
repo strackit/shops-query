@@ -2,7 +2,7 @@ import { GET_OFFER_PRODUCTS, GET_OFFER_PRODUCTS_BASIC_DETAILS } from '../../quer
 import client from '../../../../utils/apolloClient.js';
 
 
-export const getOfferProducts = async (shopId, userId = null) => {
+export const getOfferProducts = async (shopId, userId = null, limit = null) => {
   if (userId) {
     userId = Number(userId);
   }
@@ -11,6 +11,10 @@ export const getOfferProducts = async (shopId, userId = null) => {
       shopId: Number(shopId),
       userId
     };
+    if (limit) {
+      filter.limit = Number(limit);
+      filter.offset = 0;
+    }
 
     const variables = {
       filter
