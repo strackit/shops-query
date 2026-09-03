@@ -7,11 +7,13 @@ export const getOfferProducts = async (shopId, userId = null) => {
     userId = Number(userId);
   }
   try {
+    const filter = {
+      shopId: Number(shopId),
+      userId
+    };
+
     const variables = {
-      filter: {
-        shopId: Number(shopId),
-        userId
-      },
+      filter
     };
     const response = await client.query({
       query: GET_OFFER_PRODUCTS_BASIC_DETAILS,

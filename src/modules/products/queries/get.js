@@ -71,6 +71,59 @@ export const GET_PRODUCTS = gql`
   }
 }
 `;
+
+export const GET_PRODUCTS_LIST = gql`
+  query GetProductsList($filter: productfilter) {
+  products(filter: $filter) {
+    id
+    number
+    name
+    wishList {
+      like
+    }
+    isAddedToCart {
+      inCart
+    }
+    productImage {
+      id
+      image
+      productId
+    }
+    Specifications {
+      specification
+      value
+    }
+    quantity {
+      quantity
+    }
+    spec {
+      SpecificationMastername
+      value {
+        varientId
+        products {
+          productId
+          value
+          qty
+        }
+      }
+    }
+    categoryId
+    discount
+    featureImage
+    isOnline
+    lastUpdate
+    noStock
+    minStock
+    offerends
+    prize
+    productId
+    publish
+    tax
+    shopId
+  }
+}
+`;
+
 export const fetchProducts = async ({ shopId = null, productId = null, categoryId = null, byProductId = false }) => {
   const variables = { filter: {} };
 
@@ -101,8 +154,11 @@ export const fetchProducts = async ({ shopId = null, productId = null, categoryI
   }
 
   try {
+    // If fetching by productId, we probably want the full details. If fetching by shop/category (a list), we use the lightweight list query.
+    const queryToUse = productId ? GET_PRODUCTS : GET_PRODUCTS_LIST;
+
     const response = await client.query({
-      query: GET_PRODUCTS,
+      query: queryToUse,
       variables,
     });
 

@@ -29,8 +29,6 @@ const GET_SHOPS = gql`
       googleAnalytics
       razorpayKey
       razorpaySecretKey
-      phonePeKey
-      phonePeId
     }
     CMS {
       shopId

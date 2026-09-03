@@ -62,37 +62,63 @@ export const GET_OFFER_PRODUCTS_BASIC_DETAILS = gql`
   query GetofferBasicDetailsProducts($filter: offer) {
   offerProducts(filter: $filter) {
     id
-    isAddedToCart {
-      inCart
-    }
+    number
     name
-    prize
-    discount
-    publish
-    tax
     wishList {
       like
+    }
+    isAddedToCart {
+      inCart
     }
     productImage {
       id
       image
       productId
     }
+    Specifications {
+      specification
+      value
+    }
+    quantity {
+      quantity
+    }
+    spec {
+      SpecificationMastername
+      value {
+        varientId
+        products {
+          productId
+          value
+          qty
+        }
+      }
+    }
+    discount
     featureImage
-    description
     isOnline
+    lastUpdate
     noStock
+    minStock
+    offerends
+    prize
+    productId
+    publish
+    tax
+    shopId
   }
 }`;
-export const getOfferProductsController = async (shopId) => {
+export const getOfferProductsController = async (shopId, limit = null) => {
   if (!shopId) throw new Error('shopId is required');
   try {
+    const filter = {
+      shopId: Number(shopId),
+    };
+    if (limit) filter.limit = 5;
+
     const response = await client.query({
-      query: GET_OFFER_PRODUCTS,
+      query: GET_OFFER_PRODUCTS_BASIC_DETAILS,
       variables: {
-        filter: {
-          shopId: Number(shopId),
-        },
+        filter,
       },
     });
     return response?.data?.offerProducts ?? [];
