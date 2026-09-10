@@ -1,5 +1,4 @@
-import { gql } from 'graphql-tag';
-import client from '../../../utils/apolloClient.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
 const GET_BLOGS_QUERY = gql`
   query GetCMS($shopId: Int!) {

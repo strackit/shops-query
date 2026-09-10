@@ -17,6 +17,7 @@ export const GET_ORDER_HISTORY = gql`
       rating
       feedback
       paymentInfo
+      status
       timestamp
       userExpectedDeliveryDatetime
       remarks

@@ -19,6 +19,8 @@ export const ORDER_BY_CART = gql`
     $couponId: Int
     $userExpectedDeliveryDatetime: DateTime
     $remarks: String
+    $isCartDelete: Boolean
+    $status: Int
   ) {
     OrderbyCart(
       userId: $userId
@@ -38,6 +40,8 @@ export const ORDER_BY_CART = gql`
       couponId: $couponId
       userExpectedDeliveryDatetime: $userExpectedDeliveryDatetime
       remarks: $remarks
+      isCartDelete: $isCartDelete
+      status: $status
     ) {
       id
       shopId

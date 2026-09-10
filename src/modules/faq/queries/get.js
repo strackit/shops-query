@@ -1,5 +1,4 @@
-import { gql } from 'graphql-tag';
-import client from '../../../utils/apolloClient.js';
+import client, { gql } from '../../../utils/apolloClient.js';
 
 export const GET_FAQS_QUERY = gql`
   query GetFaqs($filter: FaqFilterInput) {

@@ -1,6 +1,7 @@
 import { GET_ORDERS } from '../queries/get.js';
 import { UPDATE_ORDER } from '../mutation/update.js';
 import { CANCEL_ORDER } from '../mutation/cancel.js';
+import { CONFIRM_ONLINE_ORDER } from '../mutation/confirmOnlineOrder.js';
 
 export async function fetchOrders(filter) {
   return await GET_ORDERS(filter);
@@ -13,4 +14,8 @@ export async function modifyOrder(id, input) {
 
 export async function cancelOrder(orderId) {
   return await CANCEL_ORDER(orderId);
+}
+
+export async function confirmOnlineOrder(orderId, paymentInfo, userId, shopId) {
+  return await CONFIRM_ONLINE_ORDER(orderId, paymentInfo, userId, shopId);
 }
