@@ -19,6 +19,7 @@ export const ORDER_BY_CART = gql`
     $couponId: Int
     $userExpectedDeliveryDatetime: DateTime
     $remarks: String
+    $isCartDelete: Int
   ) {
     OrderbyCart(
       userId: $userId
@@ -38,6 +39,7 @@ export const ORDER_BY_CART = gql`
       couponId: $couponId
       userExpectedDeliveryDatetime: $userExpectedDeliveryDatetime
       remarks: $remarks
+      isCartDelete: $isCartDelete
     ) {
       id
       shopId
@@ -56,19 +58,55 @@ export const ORDER_BY_CART = gql`
       shippingAddress
       userExpectedDeliveryDatetime
       remarks
+      isCartDelete
+    }
+  }
+`;
+
+
+export const UPDATE_ORDER_STATUS = gql`
+  mutation UpdateStatus(
+    $orderId: Int!
+    $status: Int!
+  ) {
+    updateStatus(
+      orderId: $orderId
+      status: $status
+    ) {
+      success
+      message
+      orderId
     }
   }
 `;
 
 export async function createOrderByCart(variables) {
-    try {
-        const { data } = await client.mutate({
-            mutation: ORDER_BY_CART,
-            variables,
-        });
-        return data.OrderbyCart;
-    } catch (error) {
-        console.error('Error in createOrderByCart:', error);
-        throw error;
-    }
+  try {
+    const { data } = await client.mutate({
+      mutation: ORDER_BY_CART,
+      variables,
+    });
+    return data.OrderbyCart;
+  } catch (error) {
+    console.error('Error in createOrderByCart:', error);
+    throw error;
+  }
+}
+
+export async function updateOrderAndStatementStatus(variables) {
+  try {
+    const { data } = await client.mutate({
+      mutation: UPDATE_ORDER_STATUS,
+      variables: {
+        orderId: Number(variables.orderId),
+        status: variables.status !== undefined && variables.status !== null
+          ? Number(variables.status)
+          : 0,
+      },
+    });
+    return data.updateStatus;
+  } catch (error) {
+    console.error('Error in updateStatus:', error);
+    throw error;
+  }
 }
