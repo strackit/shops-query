@@ -1,5 +1,6 @@
-import { placeOrderByCart } from './controller/index.js';
+import { placeOrderByCart, updatePaymentStatus } from './controller/index.js';
 
 export {
-    placeOrderByCart
+    placeOrderByCart,
+    updatePaymentStatus
 };
