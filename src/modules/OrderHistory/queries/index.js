@@ -21,6 +21,7 @@ export const GET_ORDER_HISTORY = gql`
       userExpectedDeliveryDatetime
       remarks
       codCharge
+      paymentStatus
       orderdetails {
         id
         masterId
