@@ -31,3 +31,21 @@ export async function INITIATE_PAYMENT(vars) {
   });
   return data.initiatePayment;
 }
+
+const INITIATE_PHONEPE_OAUTH_PAYMENT_MUTATION = gql`
+  mutation InitiatePhonePeOAuthPayment($amount: Int!, $accessToken: String!, $domain: String!) {
+    initiatePhonePeOAuthPayment(amount: $amount, accessToken: $accessToken, domain: $domain) {
+      success
+      redirectUrl
+      message
+    }
+  }
+`;
+
+export async function INITIATE_PHONEPE_OAUTH_PAYMENT(vars) {
+  const { data } = await client.mutate({
+    mutation: INITIATE_PHONEPE_OAUTH_PAYMENT_MUTATION,
+    variables: vars,
+  });
+  return data.initiatePhonePeOAuthPayment;
+}

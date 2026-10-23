@@ -1,6 +1,7 @@
-import { fetchShops, postTrackMetaEvent } from './controller/index.js';
+import { fetchShops, generatePhonePeOAuthToken, postTrackMetaEvent } from './controller/index.js';
 
 export default {
   fetchShops,
+  generatePhonePeOAuthToken,
   postTrackMetaEvent
 };
