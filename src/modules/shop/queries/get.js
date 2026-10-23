@@ -82,8 +82,33 @@ export async function GET_SHOP_LIST(filter) {
             razorpay: {
               key: siteConfig.razorpayKey || '',
               secret: siteConfig.razorpaySecretKey || ''
+            },
+            phonepe: {
+              version: 'v1',
+              merchantId: '',
+              saltKey: '',
+              clientId: '',
+              clientSecret: '',
+              clientVersion: 1
             }
           };
+        } else if (!siteConfig.paymentGateways.phonepe) {
+          siteConfig.paymentGateways.phonepe = {
+            version: 'v1',
+            merchantId: '',
+            saltKey: '',
+            clientId: '',
+            clientSecret: '',
+            clientVersion: 1
+          };
+        } else {
+          const p = siteConfig.paymentGateways.phonepe;
+          p.version = p.version || (p.clientId && p.clientSecret && !p.saltKey ? 'v2' : 'v1');
+          p.merchantId = p.merchantId || '';
+          p.saltKey = p.saltKey || '';
+          p.clientId = p.clientId || '';
+          p.clientSecret = p.clientSecret || '';
+          p.clientVersion = Number(p.clientVersion) || 1;
         }
       }
     });
@@ -108,8 +133,33 @@ export async function GET_SHOP_LIST(filter) {
         razorpay: {
           key: siteConfig.razorpayKey || '',
           secret: siteConfig.razorpaySecretKey || ''
+        },
+        phonepe: {
+          version: 'v1',
+          merchantId: '',
+          saltKey: '',
+          clientId: '',
+          clientSecret: '',
+          clientVersion: 1
         }
       };
+    } else if (!siteConfig.paymentGateways.phonepe) {
+      siteConfig.paymentGateways.phonepe = {
+        version: 'v1',
+        merchantId: '',
+        saltKey: '',
+        clientId: '',
+        clientSecret: '',
+        clientVersion: 1
+      };
+    } else {
+      const p = siteConfig.paymentGateways.phonepe;
+      p.version = p.version || (p.clientId && p.clientSecret && !p.saltKey ? 'v2' : 'v1');
+      p.merchantId = p.merchantId || '';
+      p.saltKey = p.saltKey || '';
+      p.clientId = p.clientId || '';
+      p.clientSecret = p.clientSecret || '';
+      p.clientVersion = Number(p.clientVersion) || 1;
     }
   }
 
