@@ -1,5 +1,5 @@
 import { GET_SHOP_LIST } from '../queries/get.js';
-import { TRACK_SERVER_META_EVENT } from '../mutation/post.js';
+import { GENERATE_PHONEPE_TOKEN, TRACK_SERVER_META_EVENT } from '../mutation/post.js';
 
 export async function fetchShops(filter) {
   return GET_SHOP_LIST(filter);
@@ -7,4 +7,8 @@ export async function fetchShops(filter) {
 
 export async function postTrackMetaEvent(shopId, eventName, eventId, customData, userData) {
   return TRACK_SERVER_META_EVENT(shopId, eventName, eventId, customData, userData);
+}
+
+export async function generatePhonePeOAuthToken(filter) {
+  return GENERATE_PHONEPE_TOKEN(filter);
 }

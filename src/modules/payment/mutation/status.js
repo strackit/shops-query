@@ -17,3 +17,21 @@ export async function CHECK_PAYMENT_STATUS(transactionId, phonePeId, phonePeKey)
   });
   return data.checkPaymentStatus;
 }
+
+const CHECK_PHONEPE_OAUTH_PAYMENT_STATUS_MUTATION = gql`
+  mutation CheckPhonePeOAuthPaymentStatus($transactionId: String!, $accessToken: String!) {
+    checkPhonePeOAuthPaymentStatus(transactionId: $transactionId, accessToken: $accessToken) {
+      success
+      message
+      status
+    }
+  }
+`;
+
+export async function CHECK_PHONEPE_OAUTH_PAYMENT_STATUS(transactionId, accessToken) {
+  const { data } = await client.mutate({
+    mutation: CHECK_PHONEPE_OAUTH_PAYMENT_STATUS_MUTATION,
+    variables: { transactionId, accessToken },
+  });
+  return data.checkPhonePeOAuthPaymentStatus;
+}
