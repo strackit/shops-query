@@ -8,6 +8,7 @@ const INITIATE_PAYMENT_MUTATION = gql`
     $phonePeId: String!
     $phonePeKey: String!
     $domain: String!
+    $merchantOrderId: String!
   ) {
     initiatePayment(
       amount: $amount
@@ -16,6 +17,7 @@ const INITIATE_PAYMENT_MUTATION = gql`
       phonePeId: $phonePeId
       phonePeKey: $phonePeKey
       domain: $domain
+      merchantOrderId: $merchantOrderId
     ) {
       success
       redirectUrl
@@ -33,8 +35,8 @@ export async function INITIATE_PAYMENT(vars) {
 }
 
 const INITIATE_PHONEPE_OAUTH_PAYMENT_MUTATION = gql`
-  mutation InitiatePhonePeOAuthPayment($amount: Int!, $accessToken: String!, $domain: String!) {
-    initiatePhonePeOAuthPayment(amount: $amount, accessToken: $accessToken, domain: $domain) {
+  mutation InitiatePhonePeOAuthPayment($amount: Int!, $accessToken: String!, $domain: String!, $merchantOrderId: String!) {
+    initiatePhonePeOAuthPayment(amount: $amount, accessToken: $accessToken, domain: $domain, merchantOrderId: $merchantOrderId) {
       success
       redirectUrl
       message
