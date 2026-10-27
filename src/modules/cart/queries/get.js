@@ -17,6 +17,7 @@ export const GET_CART = gql`
       minStock
       mastercategory
       hsnCode
+      shippingCost
       description
       category
       customSpecification
