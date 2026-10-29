@@ -8,6 +8,7 @@ export const GET_CART = gql`
       userId
       shopId
       quantity
+      addon_parent_product_id
       prize
       Discount
       name
@@ -25,6 +26,20 @@ export const GET_CART = gql`
         specification
         value
       }
+    }
+  }
+`;
+
+export const GET_ADDON_PRODUCTS = gql`
+  query GetAddonProducts($filter: AddonProductsFilterInput) {
+    getAddonProducts(filter: $filter) {
+      id
+      addon_product_id
+      product_name
+      feature_image
+      actual_price
+      discount_rs
+      addon_price
     }
   }
 `;
@@ -49,6 +64,25 @@ export const fetchCart = async (shopId, userId) => {
     return data?.cart || [];
   } catch (error) {
     console.error('Error fetching cart:', error.message);
+    throw error;
+  }
+};
+
+export const fetchAddonProducts = async (filter = {}) => {
+  try {
+    const { data, errors } = await client.query({
+      query: GET_ADDON_PRODUCTS,
+      variables: { filter },
+      fetchPolicy: "network-only",
+    });
+
+    if (errors) {
+      throw new Error(errors.map((error) => error.message).join(', '));
+    }
+
+    return data?.getAddonProducts || [];
+  } catch (error) {
+    console.error('Error fetching add-on products:', error.message);
     throw error;
   }
 };

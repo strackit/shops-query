@@ -6,6 +6,7 @@ export const UPDATE_OR_DELETE_CART = gql`
     $productId: Int!
     $shopId: Int!
     $quantity: Int
+    $addonParentProductId: Int
     $update: Boolean
     $delete: Boolean
   ) {
@@ -14,6 +15,7 @@ export const UPDATE_OR_DELETE_CART = gql`
       productId: $productId
       shopId: $shopId
       quantity: $quantity
+      addonParentProductId: $addonParentProductId
       Update: $update
       Delete: $delete
     ) {
@@ -22,11 +24,12 @@ export const UPDATE_OR_DELETE_CART = gql`
       userId
       shopId
       quantity
+      addonParentProductId: addon_parent_product_id
     }
   }
 `;
 
-export const updateCartItem = async ({ userId, productId, shopId, quantity }) => {
+export const updateCartItem = async ({ userId, productId, shopId, quantity, addonParentProductId }) => {
   try {
     const { data, errors } = await client.mutate({
       mutation: UPDATE_OR_DELETE_CART,
@@ -35,6 +38,7 @@ export const updateCartItem = async ({ userId, productId, shopId, quantity }) =>
         productId: Number(productId),
         shopId: Number(shopId),
         quantity: Number(quantity),
+        addonParentProductId: addonParentProductId == null ? null : Number(addonParentProductId),
         update: true,
         delete: null
       }
@@ -51,7 +55,7 @@ export const updateCartItem = async ({ userId, productId, shopId, quantity }) =>
   }
 };
 
-export const removeFromCart = async ({ userId, productId, shopId }) => {
+export const removeFromCart = async ({ userId, productId, shopId, addonParentProductId }) => {
   try {
     const { data, errors } = await client.mutate({
       mutation: UPDATE_OR_DELETE_CART,
@@ -60,6 +64,7 @@ export const removeFromCart = async ({ userId, productId, shopId }) => {
         productId: Number(productId),
         shopId: Number(shopId),
         quantity: null,
+        addonParentProductId: addonParentProductId == null ? null : Number(addonParentProductId),
         update: null,
         delete: true
       }

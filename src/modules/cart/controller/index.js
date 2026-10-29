@@ -2,12 +2,12 @@ import { addToCart } from '../mutations/add.js';
 import { updateCartItem, removeFromCart } from '../mutations/remove.js';
 import { fetchCart } from '../queries/get.js';
 
-export const addToCartController = async ({ productId, shopId, userId, quantity = 1, customSpecification = {} }) => {
+export const addToCartController = async ({ productId, shopId, userId, quantity = 1, addonParentProductId, customSpecification = {} }) => {
   try {
     // First attempt to add to cart
     let result;
     try {
-      result = await addToCart({ productId, shopId, userId, quantity, customSpecification });
+      result = await addToCart({ productId, shopId, userId, quantity, addonParentProductId, customSpecification });
       if (result) {
         return result;
       }
@@ -16,12 +16,14 @@ export const addToCartController = async ({ productId, shopId, userId, quantity 
     }
 
     // If add fails or returns null, try updating quantity
-    result = await updateCartItem({ userId, productId, shopId, quantity });
+    result = await updateCartItem({ userId, productId, shopId, quantity, addonParentProductId });
     
     // Verify the item was actually added/updated
     const cartItems = await fetchCart(shopId, userId);
     const itemInCart = cartItems.find(item => 
-      item.productId === productId && item.shopId === shopId
+      item.productId === productId &&
+      item.shopId === shopId &&
+      Number(item.addon_parent_product_id || 0) === Number(addonParentProductId || 0)
     );
 
     if (!itemInCart) {

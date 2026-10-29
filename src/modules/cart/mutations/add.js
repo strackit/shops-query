@@ -6,6 +6,7 @@ export const ADD_TO_CART = gql`
     $productId: Int!
     $shopId: Int!
     $quantity: Int!
+    $addonParentProductId: Int
     $customSpecification: GraphQLJSON
   ) {
     Cart(
@@ -13,6 +14,7 @@ export const ADD_TO_CART = gql`
       productId: $productId
       shopId: $shopId
       quantity: $quantity
+      addonParentProductId: $addonParentProductId
       customSpecification: $customSpecification
     ) {
       id
@@ -20,12 +22,13 @@ export const ADD_TO_CART = gql`
       userId
       shopId
       quantity
+      addonParentProductId: addon_parent_product_id
       customSpecification
     }
   }
 `;
 
-export const addToCart = async ({ productId, shopId, userId, quantity = 1, customSpecification = {} }) => {
+export const addToCart = async ({ productId, shopId, userId, quantity = 1, addonParentProductId, customSpecification = {} }) => {
   try {
     const { data, errors } = await client.mutate({
       mutation: ADD_TO_CART,
@@ -34,6 +37,7 @@ export const addToCart = async ({ productId, shopId, userId, quantity = 1, custo
         productId: Number(productId),
         shopId: Number(shopId),
         quantity: Number(quantity),
+        addonParentProductId: addonParentProductId == null ? null : Number(addonParentProductId),
         customSpecification: customSpecification || {}
       }
     });
