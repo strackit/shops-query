@@ -73,7 +73,7 @@ export const fetchAddonProducts = async (filter = {}) => {
     const { data, errors } = await client.query({
       query: GET_ADDON_PRODUCTS,
       variables: { filter },
-      fetchPolicy: "network-only",
+      fetchPolicy: "no-cache",
     });
 
     if (errors) {

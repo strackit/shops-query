@@ -54,14 +54,16 @@ export const fetchCartController = async (shopId, userId) => {
   }
 };
 
-export const removeFromCartController = async ({ userId, productId, shopId }) => {
+export const removeFromCartController = async ({ userId, productId, shopId, addonParentProductId }) => {
   try {
-    const result = await removeFromCart({ userId, productId, shopId });
+    const result = await removeFromCart({ userId, productId, shopId, addonParentProductId });
     
     // Verify the item was actually removed
     const cartItems = await fetchCart(shopId, userId);
     const itemStillInCart = cartItems.some(item => 
-      item.productId === productId && item.shopId === shopId
+      item.productId === productId &&
+      item.shopId === shopId &&
+      Number(item.addon_parent_product_id || 0) === Number(addonParentProductId || 0)
     );
 
     if (itemStillInCart) {
@@ -76,14 +78,16 @@ export const removeFromCartController = async ({ userId, productId, shopId }) =>
   }
 };
 
-export const updateCartQuantityController = async ({ userId, productId, shopId, quantity }) => {
+export const updateCartQuantityController = async ({ userId, productId, shopId, quantity, addonParentProductId }) => {
   try {
-    const result = await updateCartItem({ userId, productId, shopId, quantity });
+    const result = await updateCartItem({ userId, productId, shopId, quantity, addonParentProductId });
     
     // Verify the quantity was actually updated
     const cartItems = await fetchCart(shopId, userId);
     const item = cartItems.find(i => 
-      i.productId === productId && i.shopId === shopId
+      i.productId === productId &&
+      i.shopId === shopId &&
+      Number(i.addon_parent_product_id || 0) === Number(addonParentProductId || 0)
     );
 
     if (!item) {
