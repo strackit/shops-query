@@ -19,6 +19,7 @@ import * as productbycategory from "./src/modules/productByCategory/index.js";
 import * as productbyfilters from "./src/modules/productByFilters/index.js";
 import * as productbyprice from "./src/modules/productByPrice/index.js";
 import * as productreviews from "./src/modules/productReviews/index.js";
+import * as productEnquiry from "./src/modules/productEnquiry/index.js";
 import * as products from "./src/modules/products/index.js";
 import * as productBySpecification from "./src/modules/productBySpecification/index.js";
 import * as searchproducts from "./src/modules/searchproducts/index.js";
@@ -68,6 +69,7 @@ export default {
   productbyfilters,
   productbyprice,
   productreviews,
+  productEnquiry,
   products,
   productBySpecification,
   searchproducts,
