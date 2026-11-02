@@ -47,6 +47,7 @@ export const GET_PRODUCTS = gql`
     howToUse
     dnp
     discount
+    isTopProduct
     featureImage
     productImage {
       id
@@ -102,6 +103,7 @@ export const GET_ALL_PRODUCTS = gql`
     minStock
     description
     seoKeyword
+    isTopProduct
     howToUse
     otherInformation
     shopId

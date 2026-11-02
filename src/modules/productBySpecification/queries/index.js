@@ -12,6 +12,7 @@ export const PRODUCT_BY_SPECIFICATION = gql`
       prize
       dnp
       noStock
+      isTopProduct
       minStock
       description
       seoKeyword

@@ -12,6 +12,7 @@ const GET_TOP_PRODUCTS = gql`
       prize
       dnp
       noStock
+      isTopProduct
       minStock
       description
       seoKeyword
@@ -69,6 +70,7 @@ const GET_BASIC_DETAILS_OF_TOP_PRODUCTS = gql`
       description
       isOnline
       noStock
+      isTopProduct
     }
   }
 `;

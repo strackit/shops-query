@@ -12,6 +12,7 @@ const SEARCH_PRODUCTS = gql`
       prize
       dnp
       noStock
+      isTopProduct
       minStock
       description
       seoKeyword

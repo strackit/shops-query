@@ -23,6 +23,7 @@ export const GET_OFFER_PRODUCTS = gql`
     offerends
     number
     noStock
+    isTopProduct
     name
     minStock
     mastercategory
@@ -56,6 +57,7 @@ export const GET_OFFER_PRODUCTS_BASIC_DETAILS = gql`
     description
     isOnline
     noStock
+    isTopProduct
   }
 }`;
 

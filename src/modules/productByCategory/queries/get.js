@@ -19,6 +19,7 @@ const PRODUCTS_BY_CATEGORY = gql`
       otherInformation
       shopId
       featureImage
+      isTopProduct
       mastercategory
       category
       categoryId

@@ -19,6 +19,7 @@ const GET_PRODUCTS_BY_PRICE = gql`
       description
       isOnline
       noStock
+      isTopProduct
       stockStatus {
       totalQty
       hasVariants
