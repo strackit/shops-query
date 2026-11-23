@@ -7,6 +7,8 @@ export const GET_BANNERS = gql`
       id
       title
       image
+      video
+      video_size
       priority
       addedon
       link
