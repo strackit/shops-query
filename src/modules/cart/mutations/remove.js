@@ -24,7 +24,7 @@ export const UPDATE_OR_DELETE_CART = gql`
       userId
       shopId
       quantity
-      addonParentProductId: addon_parent_product_id
+      addonParentProductId
     }
   }
 `;

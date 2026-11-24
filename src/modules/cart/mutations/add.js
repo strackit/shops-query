@@ -22,7 +22,7 @@ export const ADD_TO_CART = gql`
       userId
       shopId
       quantity
-      addonParentProductId: addon_parent_product_id
+      addonParentProductId
       customSpecification
     }
   }

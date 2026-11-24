@@ -8,7 +8,7 @@ export const GET_CART = gql`
       userId
       shopId
       quantity
-      addon_parent_product_id
+      addonParentProductId
       prize
       Discount
       name

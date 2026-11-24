@@ -23,7 +23,7 @@ export const addToCartController = async ({ productId, shopId, userId, quantity 
     const itemInCart = cartItems.find(item => 
       item.productId === productId &&
       item.shopId === shopId &&
-      Number(item.addon_parent_product_id || 0) === Number(addonParentProductId || 0)
+      Number(item.addonParentProductId || 0) === Number(addonParentProductId || 0)
     );
 
     if (!itemInCart) {
@@ -63,7 +63,7 @@ export const removeFromCartController = async ({ userId, productId, shopId, addo
     const itemStillInCart = cartItems.some(item => 
       item.productId === productId &&
       item.shopId === shopId &&
-      Number(item.addon_parent_product_id || 0) === Number(addonParentProductId || 0)
+      Number(item.addonParentProductId || 0) === Number(addonParentProductId || 0)
     );
 
     if (itemStillInCart) {
@@ -87,7 +87,7 @@ export const updateCartQuantityController = async ({ userId, productId, shopId, 
     const item = cartItems.find(i => 
       i.productId === productId &&
       i.shopId === shopId &&
-      Number(i.addon_parent_product_id || 0) === Number(addonParentProductId || 0)
+      Number(i.addonParentProductId || 0) === Number(addonParentProductId || 0)
     );
 
     if (!item) {
